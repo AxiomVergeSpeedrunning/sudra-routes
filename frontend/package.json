@@ -1,0 +1,31 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/axiom-verge-speedrunning/router",
+  "author": "The Axiom Verge Speedrunning Team",
+  "license": "WTFPL",
+  "private": false,
+  "scripts": {
+    "start": "node index.js",
+    "build": "parcel build public/index.html",
+    "lint": "eslint --ext .js,.jsx src/",
+    "fix": "eslint --ext .js,.jsx src/ --fix"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.5.1",
+    "eslint": "6.1.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-router-dom": "^5.1.2"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "parcel-bundler": "^1.12.4",
+    "parcel-proxy-server": "^1.1.0"
+  }
+}
