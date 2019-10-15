@@ -10,4 +10,4 @@ jobs:
     - name: Spin up docker containers
       run: docker-compose up --build -d
     - name: Frontend lint
-      run: docker-compose exec frontend yarn lint
+      run: docker-compose exec -T frontend yarn lint
