@@ -1,0 +1,7 @@
+#!/bin/sh
+
+PORT=${PORT:-3001}
+
+./manage.py wait_for_db
+./manage.py migrate
+./manage.py runserver 0.0.0.0:$PORT

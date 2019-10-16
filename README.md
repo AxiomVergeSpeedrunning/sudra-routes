@@ -16,9 +16,11 @@ We're using an `editorconfig` file to make sure that everyone's editor complies.
 docker-compose up --build
 ```
 
-This starts all of the containers. Currently only the frontend container is defined, a backend and database will be added soon.
+This starts all of the containers. You'll have three services, with their ports accessible from outside. They are:
 
  - The frontend, on `http://localhost:3000`
+ - The backend, on `http://localhost:3001`
+ - The database, on `postgresql://postgres:postgres@localhost:5432/postgres`
 
 The only one of these that you will likely be navigating to will be the frontend. It will proxy API requests automatically to the backend, and the backend handles the database.
 
@@ -53,8 +55,6 @@ On the frontend before making a commit, ALWAYS run `yarn fix` - this has our lin
 Take care of those before making a commit.
 
 ### Backend
-The backend doesn't exist yet, but we'll be using Python (Django).
-
 ```
 flake8
 ```

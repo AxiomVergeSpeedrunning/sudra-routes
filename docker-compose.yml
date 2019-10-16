@@ -10,3 +10,17 @@ services:
       - /code/node_modules
     environment:
       - PORT=3000
+  backend:
+    build: backend
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/code
+    ports:
+      - "3001:3001"
+  db:
+    image: postgres:10
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres

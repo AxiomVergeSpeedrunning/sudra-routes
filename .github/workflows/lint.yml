@@ -1,6 +1,6 @@
 name: Lint
 
-'on': [push, pull_request]
+'on': pull_request
 
 jobs:
   build-and-lint:
@@ -11,3 +11,5 @@ jobs:
       run: docker-compose up --build -d
     - name: Frontend lint
       run: docker-compose exec -T frontend yarn lint
+    - name: Backend lint
+      run: docker-compose exec -T backend flake8
