@@ -18,9 +18,7 @@ const App = () => (
     <CssBaseline />
 
     <Router>
-      <Switch>
-        {/* TODO: actually add routes */}
-      </Switch>
+      <Switch>{/* TODO: actually add routes */}</Switch>
     </Router>
   </ThemeProvider>
 );

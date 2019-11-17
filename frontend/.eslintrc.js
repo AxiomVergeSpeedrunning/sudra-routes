@@ -1,10 +1,8 @@
 module.exports = {
-  "extends": "airbnb",
-  "plugins": [
-    "react",
-  ],
-  "env": {
-    "browser": true,
+  extends: ['airbnb', 'prettier'],
+  plugins: ['react', 'prettier'],
+  env: {
+    browser: true,
   },
   rules: {
     // for...of loops being forbidden is the dumbest thing I have ever heard
@@ -14,9 +12,9 @@ module.exports = {
     'max-len': [
       'error',
       {
-        "code": 120,
-        "ignoreStrings": true
-      }
+        code: 120,
+        ignoreStrings: true,
+      },
     ],
 
     // For components that appear more than once, this is impossible
@@ -27,9 +25,10 @@ module.exports = {
     'react/no-array-index-key': ['off'],
 
     // We want to be able to use middleware
-    'no-param-reassign': ['error', {'props': false}],
+    'no-param-reassign': ['error', { props: false }],
 
     // This is factually incorrect, JSX belongs in .jsx files
     'react/jsx-filename-extension': ['off'],
+    'prettier/prettier': 'error',
   },
 };
