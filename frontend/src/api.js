@@ -10,7 +10,7 @@ class API {
       responseType: 'json',
       headers: { 'X-REQUESTED-WITH': 'XMLHttpRequest' },
     });
-    this.api.interceptors.request.use(function(config) {
+    this.api.interceptors.request.use(config => {
       config.headers['X-CSRFToken'] = Cookies.get('csrftoken');
       config.headers['Content-Type'] = 'application/json';
 
