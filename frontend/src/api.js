@@ -19,4 +19,6 @@ class API {
   }
 }
 
+API.initAxios();
+
 export default API;
