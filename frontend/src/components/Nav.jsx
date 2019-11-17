@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,25 +11,49 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Hidden from '@material-ui/core/Hidden';
 
 import HomeIcon from '@material-ui/icons/Home';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TrafficIcon from '@material-ui/icons/Traffic';
 import GamepadIcon from '@material-ui/icons/Gamepad';
-import Typography from '@material-ui/core/Typography';
 
 import urls from '../urls';
 
-const useStyles = makeStyles({
+const drawerWidth = 250;
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+  },
   list: {
-    minWidth: 250,
+    minWidth: drawerWidth,
   },
   title: {
     flexGrow: 1,
-    marginLeft: 16,
+    marginLeft: theme.spacing(2),
   },
-});
+  toolbar: theme.mixins.toolbar,
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  content: {
+    flexGrow: 1,
+    padding: [[theme.spacing(4), theme.spacing(4)]],
+  },
+}));
 
 const list = [
   [HomeIcon, urls.home, 'Home'],
@@ -38,11 +63,13 @@ const list = [
   [GamepadIcon, urls.streams, 'Streams'],
 ];
 
-const Nav = () => {
+const Nav = ({ children }) => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
+  const theme = useTheme();
+  const onDesktop = useMediaQuery(theme.breakpoints.up('lg'));
   const goTo = url => () => history.push(url);
 
   // Close the navbar whenever the route changes
@@ -51,8 +78,8 @@ const Nav = () => {
   }, [location]);
 
   return (
-    <>
-      <AppBar position="static">
+    <div className={classes.root}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -69,7 +96,15 @@ const Nav = () => {
         </Toolbar>
       </AppBar>
 
-      <Drawer open={open} onClose={() => setOpen(false)}>
+      <Drawer
+        open={open || onDesktop}
+        variant={onDesktop ? 'persistent' : 'temporary'}
+        onClose={() => setOpen(false)}
+        className={classes.drawer}
+      >
+        <Hidden mdDown>
+          <div className={classes.toolbar} />
+        </Hidden>
         <div className={classes.list}>
           <List>
             {list.map(([Icon, url, text]) => (
@@ -84,8 +119,17 @@ const Nav = () => {
           </List>
         </div>
       </Drawer>
-    </>
+
+      <Container className={classes.content}>
+        <div className={classes.toolbar} />
+        {children}
+      </Container>
+    </div>
   );
+};
+
+Nav.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Nav;
