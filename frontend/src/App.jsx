@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 const theme = createMuiTheme({
   palette: {
+    // TODO: add a toggle for this somewhere on the site, and keep it in context
     type: 'dark',
   },
   typography: {

@@ -1,4 +1,4 @@
-# Sudra Routes/Axiom Verge Router
+# Sudra Routes/Axiom Verge Community Website
 
 ## Getting started
 Make sure that you have git and docker installed. Add yourself to the docker group so you don't have to run as root.
