@@ -34,9 +34,11 @@ const useStyles = makeStyles(theme => ({
   list: {
     minWidth: drawerWidth,
   },
+  menu: {
+    marginRight: theme.spacing(2),
+  },
   title: {
     flexGrow: 1,
-    marginLeft: theme.spacing(2),
   },
   toolbar: theme.mixins.toolbar,
   appBar: {
@@ -81,14 +83,17 @@ const Nav = ({ children }) => {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => setOpen(v => !v)}
-          >
-            <MenuIcon />
-          </IconButton>
+          <Hidden lgUp>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              className={classes.menu}
+              onClick={() => setOpen(v => !v)}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
 
           <Typography variant="h6" className={classes.title}>
             Axiom Verge Speedrunning
