@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import TwitchEmbed from 'react-twitch-embed-video';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import _ from 'lodash';
 
 import helix from '../twitch-api';
 
 const FirstLiveStream = () => {
   const [loaded, setLoaded] = useState(false);
-  const [channel, setChannel] = useState('');
+  const [channel, setChannel] = useState(null);
 
   useEffect(() => {
     helix.get('streams', { params: { game_id: '34072' } }).then(({ data }) => {
@@ -14,7 +16,7 @@ const FirstLiveStream = () => {
         return;
       }
 
-      setChannel(data[0].user_name);
+      setChannel(_.sample(data));
     });
 
     setLoaded(true);
@@ -25,9 +27,12 @@ const FirstLiveStream = () => {
   }
 
   return (
-    <Grid container justify="center">
-      <TwitchEmbed channel={channel} layout="video" theme="dark" />
-    </Grid>
+    <>
+      <Grid container justify="center" alignItems="center" direction="column">
+        <TwitchEmbed channel={channel.user_name} layout="video" theme="dark" />
+        <Typography variant="caption">Now live: {channel.user_name}</Typography>
+      </Grid>
+    </>
   );
 };
 
