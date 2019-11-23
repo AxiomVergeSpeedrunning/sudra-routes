@@ -1,0 +1,24 @@
+{
+  "production": {
+    "aws_region": "us-east-1",
+    "django_settings": "backend.settings",
+    "profile_name": "default",
+    "project_name": "backend",
+    "runtime": "python3.7",
+    "s3_bucket": "sudra-routes-bundles",
+    "certificate_arn": "arn:aws:acm:us-east-1:186916128567:certificate/ac700b81-4c8f-4f87-aba3-1dac1aeb9511",
+    "domain": "api.sudra-routes.com",
+    "vpc_config": {
+      "SubnetIds": [
+        "subnet-ce37bd94",
+        "subnet-2e6d6f12",
+        "subnet-42ce2e26",
+        "subnet-37b2e77f",
+        "subnet-56aac35a",
+        "subnet-691b8945"
+      ],
+      "SecurityGroupIds": ["sg-b7edbbc6"]
+    },
+    "remote_env": "s3://com.sudra-routes.config/secret_config.json"
+  }
+}
