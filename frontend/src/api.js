@@ -16,6 +16,12 @@ class API {
 
       return config;
     });
+
+    this.api.interceptors.response.use(response => response.data);
+  }
+
+  static async getTutorials() {
+    return await this.api.get('tutorials/all/');
   }
 }
 

@@ -8,6 +8,7 @@ import urls from './urls';
 import Nav from './components/Nav';
 
 import Home from './pages/Home';
+import Dictionary from './pages/Dictionary';
 
 const theme = createMuiTheme({
   palette: {
@@ -32,6 +33,7 @@ const App = () => (
       <Nav>
         <Switch>
           <Route exact path={urls.home} component={Home} />
+          <Route exact path={urls.dictionary} component={Dictionary} />
         </Switch>
       </Nav>
     </Router>

@@ -22,6 +22,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import TrafficIcon from '@material-ui/icons/Traffic';
 import GamepadIcon from '@material-ui/icons/Gamepad';
+import BookIcon from '@material-ui/icons/Book';
 
 import urls from '../urls';
 
@@ -61,6 +62,7 @@ const list = [
   [HomeIcon, urls.home, 'Home'],
   [MenuBookIcon, urls.tutorials, 'Tutorials'],
   [ExitToAppIcon, urls.routes, 'Routes'],
+  [BookIcon, urls.dictionary, 'Dictionary'],
   [TrafficIcon, urls.race, 'Race'],
   [GamepadIcon, urls.streams, 'Streams'],
 ];
