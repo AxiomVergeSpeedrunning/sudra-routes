@@ -30,5 +30,6 @@ module.exports = {
     // This is factually incorrect, JSX belongs in .jsx files
     'react/jsx-filename-extension': ['off'],
     'prettier/prettier': 'error',
+    'react/jsx-props-no-spreading': ['off'],
   },
 };

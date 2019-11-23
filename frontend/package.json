@@ -22,8 +22,11 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-markdown": "^4.2.2",
     "react-router-dom": "^5.1.2",
+    "react-syntax-highlighter": "^11.0.2",
     "react-twitch-embed-video": "^1.1.2",
+    "refractor": "^2.10.0",
     "twitch-helix-api": "^1.0.1"
   },
   "devDependencies": {
@@ -36,6 +39,7 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.0.9",
     "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.2.1",
     "parcel-proxy-server": "^1.1.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1"
