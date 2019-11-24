@@ -19,7 +19,6 @@
       ],
       "SecurityGroupIds": ["sg-b7edbbc6"]
     },
-    "remote_env": "s3://com.sudra-routes.config/secret_config.json",
     "timeout_seconds": 900
   }
 }

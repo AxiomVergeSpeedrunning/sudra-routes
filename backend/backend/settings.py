@@ -28,8 +28,10 @@ SECRET_KEY = env(
     default='_=#%ak+xfmu=h=bm-qumqw1e^=er-m^2b2fc7(w8-h!+v8m)!(',
 )
 
+PRODUCTION = env.bool('DJANGO_PRODUCTION', default=False)
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not PRODUCTION
 
 ALLOWED_HOSTS = [
     env('DJANGO_ALLOWED_HOST', default='*'),
