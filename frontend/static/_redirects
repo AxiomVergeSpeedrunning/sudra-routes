@@ -2,3 +2,5 @@
 
 # Redirect default Netlify subdomain to primary domain
 https://heuristic-elion-193669.netlify.com/* https://sudra-routes.com/:splat 301!
+
+/api/*  https://api.sudra-routes.com/api/:splat  200
