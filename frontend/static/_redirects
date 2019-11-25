@@ -4,3 +4,5 @@
 https://heuristic-elion-193669.netlify.com/* https://sudra-routes.com/:splat 301!
 
 /api/*  https://api.sudra-routes.com/api/:splat  200
+
+/*    /index.html   200
