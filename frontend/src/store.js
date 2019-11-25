@@ -1,15 +1,15 @@
-import { observable, computed, action, flow } from 'mobx';
+import { decorate, observable, computed, action, flow } from 'mobx';
 import api from 'api';
 import Cookies from 'js-cookie';
 
 class Store {
-  @observable userInfo = {};
+  userInfo = {};
 
-  @observable isAuthenticated = false;
+  isAuthenticated = false;
 
-  @observable loading = true;
+  loading = true;
 
-  @observable useNav = true;
+  useNav = true;
 
   checkAuthentication = flow(function*() {
     this.loading = true;
@@ -28,16 +28,22 @@ class Store {
     }
   });
 
-  @action.bound
   logout() {
     Cookies.remove('authToken');
 
     this.checkAuthentication();
   }
 
-  @computed get loaded() {
+  get loaded() {
     return !this.loading;
   }
 }
 
-export default Store;
+export default decorate(Store, {
+  logout: action.bound,
+  loaded: computed,
+  userInfo: observable,
+  isAuthenticated: observable,
+  loading: observable,
+  useNav: observable,
+});

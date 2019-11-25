@@ -12,7 +12,11 @@ const GlobalContextProvider = ({ children }) => {
 
   useEffect(() => {
     store.checkAuthentication();
-  }, [location]);
+  }, []);
+
+  if (store.loading) {
+    return null;
+  }
 
   return <GlobalContext.Provider value={store}>{children}</GlobalContext.Provider>;
 };
