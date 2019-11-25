@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { GlobalContext } from 'contexts';
 import Store from 'store';
-import { useLocation } from 'react-router-dom';
 
 const store = new Store();
 
 const GlobalContextProvider = ({ children }) => {
-  const location = useLocation();
-
   useEffect(() => {
     store.checkAuthentication();
   }, []);
