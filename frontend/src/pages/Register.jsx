@@ -31,7 +31,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const { enqueueSnackbar } = useSnackbar();
-  const { isAuthenticated, checkAuthentication } = useGlobalContext();
+  const { isAuthenticated, checkAuthentication, logout } = useGlobalContext();
   const history = useHistory();
 
   const classes = useStyles();
@@ -42,6 +42,7 @@ const Register = () => {
 
   const submit = async e => {
     e.preventDefault();
+    logout();
 
     if (password !== passwordConfirmation || !isemail(email)) {
       return;
@@ -51,6 +52,7 @@ const Register = () => {
       const { token } = await api.register({ username, email, password });
       Cookies.set('authToken', token);
       checkAuthentication();
+      history.push(urls.home);
     } catch (err) {
       enqueueSnackbar('Error signing up - that user might already exist.', {
         variant: 'error',

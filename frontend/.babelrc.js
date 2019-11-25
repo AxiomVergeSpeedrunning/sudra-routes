@@ -11,15 +11,15 @@ module.exports = {
   ],
   plugins: [
     [
-      'module-resolver',
-      {
-        root: ['./src/'],
-      },
-    ],
-    [
       '@babel/plugin-proposal-decorators',
       {
         legacy: true,
+      },
+    ],
+    [
+      'module-resolver',
+      {
+        root: ['./src/'],
       },
     ],
 

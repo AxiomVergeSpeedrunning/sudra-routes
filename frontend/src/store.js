@@ -11,15 +11,13 @@ class Store {
 
   @observable useNav = true;
 
-  @action
   checkAuthentication = flow(function*() {
     this.loading = true;
 
     try {
-      const { token, userInfo } = yield api.checkAuthentication();
+      const { userInfo } = yield api.checkAuthentication();
 
       this.userInfo = userInfo;
-      Cookies.set('authToken', token);
       this.isAuthenticated = true;
     } catch (e) {
       this.userInfo = {};

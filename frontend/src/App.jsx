@@ -34,8 +34,8 @@ const App = () => (
   <SnackbarProvider maxSnack={3}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <GlobalContextProvider>
-        <Router>
+      <Router>
+        <GlobalContextProvider>
           <Nav>
             <Switch>
               <Route exact path={urls.home} component={Home} />
@@ -44,8 +44,8 @@ const App = () => (
               <Route exact path={urls.register} component={Register} />
             </Switch>
           </Nav>
-        </Router>
-      </GlobalContextProvider>
+        </GlobalContextProvider>
+      </Router>
     </ThemeProvider>
   </SnackbarProvider>
 );

@@ -177,6 +177,7 @@ CORS_ORIGIN_WHITELIST = [
     'https://sudra-routes.com',
     'https://www.sudra-routes.com',
     'https://api.sudra-routes.com',
+    'http://localhost:3000',
 ]
 
 CORS_URLS_REGEX = r'^/api/.*$'
