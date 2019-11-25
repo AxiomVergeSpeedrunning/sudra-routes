@@ -22,6 +22,7 @@ class Store {
     } catch (e) {
       this.userInfo = {};
       this.isAuthenticated = false;
+      Cookies.remove('authToken');
     } finally {
       this.loading = false;
     }
