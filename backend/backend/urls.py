@@ -22,4 +22,5 @@ urlpatterns = [
         re_path('tutorials/', include('tutorials.urls')),
         re_path('auth/', include('custom_auth.urls')),
     ])),
+    path('tracker/', include('tracker.urls')),
 ]
