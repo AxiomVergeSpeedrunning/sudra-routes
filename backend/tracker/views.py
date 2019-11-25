@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .models import TrackerInformation
+from .serializers import TrackerInformationSerializer
+from .utils import translate_data
 
 
 @api_view()
@@ -11,8 +13,9 @@ def retrieve(request):
         return Response({}, status=status.HTTP_403_FORBIDDEN)
 
     info, created = TrackerInformation.objects.get_or_create(user=request.user)
+    serialized = TrackerInformationSerializer(info)
 
-    return Response(info.data)
+    return Response(serialized.data)
 
 
 @api_view(['POST'])
@@ -22,7 +25,9 @@ def store(request):
 
     info, created = TrackerInformation.objects.get_or_create(user=request.user)
 
-    info.data = request.data
+    translate_data(request.data, info)
     info.save()
 
-    return Response(info.data)
+    serialized = TrackerInformationSerializer(info)
+
+    return Response(serialized.data)
