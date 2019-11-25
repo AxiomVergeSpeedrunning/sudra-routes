@@ -32,8 +32,8 @@ const theme = createMuiTheme({
 
 const App = () => (
   <SnackbarProvider maxSnack={3}>
-    <GlobalContextProvider>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <GlobalContextProvider>
         <CssBaseline />
 
         <Router>
@@ -46,8 +46,8 @@ const App = () => (
             </Switch>
           </Nav>
         </Router>
-      </ThemeProvider>
-    </GlobalContextProvider>
+      </GlobalContextProvider>
+    </ThemeProvider>
   </SnackbarProvider>
 );
 
