@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import MarkdownDisplay from './MarkdownDisplay';
 import { makeStyles } from '@material-ui/core/styles';
+import MarkdownDisplay from './MarkdownDisplay';
 
 const useStyles = makeStyles({
   root: {
@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Definition = ({ term, definition, ...props }) => {
+const Definition = ({ term, definition }) => {
   const classes = useStyles();
 
   return (

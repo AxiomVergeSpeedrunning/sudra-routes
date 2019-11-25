@@ -10,7 +10,7 @@ const server = new ParcelProxyServer({
   },
   proxies: {
     '/api': {
-      target: 'http://backend:3001/api',
+      target: 'http://backend:3001/',
     },
   },
 });

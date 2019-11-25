@@ -11,7 +11,12 @@ class API {
       headers: { 'X-REQUESTED-WITH': 'XMLHttpRequest' },
     });
     this.api.interceptors.request.use(config => {
-      config.headers['X-CSRFToken'] = Cookies.get('csrftoken');
+      const authToken = Cookies.get('authToken');
+
+      if (authToken) {
+        config.headers.Authorization = `Token ${authToken}`;
+      }
+
       config.headers['Content-Type'] = 'application/json';
 
       return config;
@@ -21,7 +26,19 @@ class API {
   }
 
   static async getTutorials() {
-    return await this.api.get('tutorials/all/');
+    return this.api.get('tutorials/all/');
+  }
+
+  static async checkAuthentication() {
+    return this.api.get('auth/check/');
+  }
+
+  static async login({ username, password }) {
+    return this.api.post('auth/login/', { username, password });
+  }
+
+  static async register({ username, email, password }) {
+    return this.api.post('auth/register/', { username, email, password });
   }
 }
 

@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
     border: '10px solid transparent',
     borderImage: `url(${AxiomBorder}) 10 round`,
     borderRadius: 12,
+    backgroundColor: '#130612',
   },
 }));
 

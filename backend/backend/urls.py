@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include([
         re_path('tutorials/', include('tutorials.urls')),
+        re_path('auth/', include('custom_auth.urls')),
     ])),
 ]

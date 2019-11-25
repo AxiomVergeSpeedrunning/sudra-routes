@@ -1,23 +1,28 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import grey from '@material-ui/core/colors/grey';
+import red from '@material-ui/core/colors/red';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { SnackbarProvider } from 'notistack';
+
+import Nav from 'components/Nav';
+
+import Home from 'pages/Home';
+import Dictionary from 'pages/Dictionary';
+import Login from 'pages/Login';
+import Register from 'pages/Register';
+
+import GlobalContextProvider from 'components/GlobalContextProvider';
 import urls from './urls';
-
-import Nav from './components/Nav';
-
-import Home from './pages/Home';
-import Dictionary from './pages/Dictionary';
 
 const theme = createMuiTheme({
   palette: {
     // TODO: add a toggle for this somewhere on the site, and keep it in context
     type: 'dark',
     primary: {
-      main: grey[800],
-      light: grey[700],
-      dark: grey[900],
+      main: red[800],
+      light: red[700],
+      dark: red[900],
     },
   },
   typography: {
@@ -26,18 +31,24 @@ const theme = createMuiTheme({
 });
 
 const App = () => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
+  <SnackbarProvider maxSnack={3}>
+    <GlobalContextProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-    <Router>
-      <Nav>
-        <Switch>
-          <Route exact path={urls.home} component={Home} />
-          <Route exact path={urls.dictionary} component={Dictionary} />
-        </Switch>
-      </Nav>
-    </Router>
-  </ThemeProvider>
+        <Router>
+          <Nav>
+            <Switch>
+              <Route exact path={urls.home} component={Home} />
+              <Route exact path={urls.dictionary} component={Dictionary} />
+              <Route exact path={urls.login} component={Login} />
+              <Route exact path={urls.register} component={Register} />
+            </Switch>
+          </Nav>
+        </Router>
+      </ThemeProvider>
+    </GlobalContextProvider>
+  </SnackbarProvider>
 );
 
 export default App;

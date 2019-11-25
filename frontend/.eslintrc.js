@@ -1,4 +1,9 @@
+const path = require('path');
+
+const srcRoot = path.join(__dirname, 'src');
+
 module.exports = {
+  parser: 'babel-eslint',
   extends: ['airbnb', 'prettier'],
   plugins: ['react', 'prettier'],
   env: {
@@ -31,5 +36,15 @@ module.exports = {
     'react/jsx-filename-extension': ['off'],
     'prettier/prettier': 'error',
     'react/jsx-props-no-spreading': ['off'],
+    'func-names': ['off'],
+    'react/forbid-prop-types': ['off'],
+    'react/no-unescaped-entities': ['off'],
+  },
+  settings: {
+    'import/resolver': {
+      'babel-module': {
+        root: [srcRoot],
+      },
+    },
   },
 };

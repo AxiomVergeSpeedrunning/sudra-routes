@@ -49,8 +49,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
     'backend',
     'tutorials',
+    'custom_auth',
 ]
 
 MIDDLEWARE = [
@@ -152,6 +154,10 @@ REST_FRAMEWORK = {
     'JSON_UNDERSCOREIZE': {
         'no_underscore_before_number': True,
     },
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }
 
 
@@ -172,3 +178,5 @@ CORS_ORIGIN_WHITELIST = [
     'https://www.sudra-routes.com',
     'https://api.sudra-routes.com',
 ]
+
+CORS_URLS_REGEX = r'^/api/.*$'
