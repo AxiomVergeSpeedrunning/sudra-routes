@@ -1,8 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import HStoreField
 
 
 class TrackerInformation(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='tracker_info', primary_key=True)
-    data = HStoreField(null=True, blank=True)
+    difficulty = models.CharField(max_length=255, null=True, blank=True)
+    area_item_percentage = models.IntegerField(null=True, blank=True)
+    area_map_percentage = models.IntegerField(null=True, blank=True)
+    current_health = models.IntegerField(null=True, blank=True)
+    red_goo_destroyed = models.IntegerField(null=True, blank=True)
+    bricks_destroyed = models.IntegerField(null=True, blank=True)
+    creatures_glitched = models.IntegerField(null=True, blank=True)
+    deaths = models.IntegerField(null=True, blank=True)
+    area_index = models.IntegerField(null=True, blank=True)
+    overall_item_percentage = models.IntegerField(null=True, blank=True)
+    overall_map_percentage = models.IntegerField(null=True, blank=True)
