@@ -10,7 +10,7 @@ def retrieve(request):
     if not request.user.is_authenticated:
         return Response({}, status=status.HTTP_403_FORBIDDEN)
 
-    info = TrackerInformation.objects.get_or_create(user=request.user)
+    info, created = TrackerInformation.objects.get_or_create(user=request.user)
 
     return Response(info.data)
 
@@ -20,7 +20,7 @@ def store(request):
     if not request.user.is_authenticated:
         return Response({}, status=status.HTTP_403_FORBIDDEN)
 
-    info = TrackerInformation.objects.get_or_create(user=request.user)
+    info, created = TrackerInformation.objects.get_or_create(user=request.user)
 
     info.data = request.data
     info.save()
