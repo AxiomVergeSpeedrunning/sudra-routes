@@ -16,6 +16,7 @@ class Store {
       const { userInfo } = yield api.checkAuthentication();
       this.userInfo = userInfo;
 
+      console.log(this.userInfo);
       this.isAuthenticated = true;
     } catch (e) {
       this.userInfo = {};
