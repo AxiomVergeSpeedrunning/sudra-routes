@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
+import Grid from '@material-ui/core/Grid';
 
 import api from 'api';
 import { useGlobalContext } from 'hooks';
@@ -39,63 +40,75 @@ const TrackerWidget = ({
     };
   }, []);
 
+  const urlParams = new URLSearchParams(window.location.search);
+
   const hp = info.currentHealth ? `${info.currentHealth}/${info.maxHealth}` : null;
 
+  const [direction, justify] = urlParams.get('reverse')
+    ? ['row-reverse', 'flex-end']
+    : ['row', 'flex-start'];
+
   return (
-    <>
-      <Window heading="AV Tracker">
-        <Row>
-          <Item label="Game Difficulty" value={info.difficulty} />
-        </Row>
+    <Grid container direction={direction} justify={justify}>
+      <Grid item>
+        <Window heading="AV Tracker">
+          <Row>
+            <Item label="Game Difficulty" value={info.difficulty} />
+          </Row>
 
-        <Row>
-          <Item label="Item%" value={info.overallItemPercentage} />
-          <Spacer h={8} />
-          <Item label="Map%" value={info.overallMapPercentage} />
-        </Row>
+          <Row>
+            <Item label="Item%" value={info.overallItemPercentage} />
+            <Spacer h={8} />
+            <Item label="Map%" value={info.overallMapPercentage} />
+          </Row>
 
-        <Row>
-          <Item label="HP" value={hp} />
-        </Row>
+          <Row>
+            <Item label="HP" value={hp} />
+          </Row>
 
-        <Row>
-          <Item label="Bubbles Popped" value={info.redGooDestroyed} />
-        </Row>
+          <Row>
+            <Item label="Bubbles Popped" value={info.redGooDestroyed} />
+          </Row>
 
-        <Row>
-          <Item label="Blocks Broken" value={info.bricksDestroyed} />
-        </Row>
+          <Row>
+            <Item label="Blocks Broken" value={info.bricksDestroyed} />
+          </Row>
 
-        <Row>
-          <Item label="Enemies Glitched" value={info.creaturesGlitched} />
-        </Row>
+          <Row>
+            <Item label="Enemies Glitched" value={info.creaturesGlitched} />
+          </Row>
 
-        <Row>
-          <Item label="Deaths" value={info.deaths} />
-        </Row>
+          <Row>
+            <Item label="Deaths" value={info.deaths} />
+          </Row>
 
-        {info.overallMapPercentage === 100 && <MapDot />}
-        {info.overallItemPercentage === 100 && <ItemDot />}
-      </Window>
+          {info.overallMapPercentage === 100 && <MapDot />}
+          {info.overallItemPercentage === 100 && <ItemDot />}
+        </Window>
+      </Grid>
 
-      <Spacer v={8} />
+      <Spacer h={8} />
 
-      <Window heading={info.areaName || 'null'}>
-        <Row>
-          <Item label="Item%" value={info.areaItemPercentage} />
-          <Spacer h={8} />
-          <Item label="Map%" value={info.areaMapPercentage} />
-        </Row>
+      <Grid item>
+        <Spacer v={8} smUp />
+        <Window heading={info.areaName || 'null'}>
+          <Row>
+            <Item label="Item%" value={info.areaItemPercentage} />
+            <Spacer h={8} />
+            <Item label="Map%" value={info.areaMapPercentage} />
+          </Row>
 
-        {info.areaMapPercentage === 100 && <MapDot />}
-        {info.areaItemPercentage === 100 && <ItemDot />}
-      </Window>
-    </>
+          {info.areaMapPercentage === 100 && <MapDot />}
+          {info.areaItemPercentage === 100 && <ItemDot />}
+        </Window>
+      </Grid>
+    </Grid>
   );
 };
 
 TrackerWidget.propTypes = {
   match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default observer(TrackerWidget);
