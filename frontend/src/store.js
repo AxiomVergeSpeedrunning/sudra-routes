@@ -13,10 +13,9 @@ class Store {
 
   checkAuthentication = flow(function*() {
     try {
-      const { userInfo } = yield api.checkAuthentication();
-      this.userInfo = userInfo;
+      const { userInfo, token } = yield api.checkAuthentication();
+      this.userInfo = { ...userInfo, token };
 
-      console.log(this.userInfo);
       this.isAuthenticated = true;
     } catch (e) {
       this.userInfo = {};

@@ -7,6 +7,7 @@ const urls = {
   dictionary: '/dictionary/',
   login: '/login/',
   register: '/register/',
+  account: '/account/',
 };
 
 export default urls;

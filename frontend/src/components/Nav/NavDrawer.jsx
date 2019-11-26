@@ -79,6 +79,14 @@ const NavDrawer = ({ classes, ...props }) => {
             </>
           ) : (
             <>
+              <ListItem button onClick={goTo(urls.account)}>
+                <ListItemIcon>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+
+                <ListItemText primary="My Account" />
+              </ListItem>
+
               <ListItem button onClick={logout}>
                 <ListItemIcon>
                   <ExitToAppIcon />
