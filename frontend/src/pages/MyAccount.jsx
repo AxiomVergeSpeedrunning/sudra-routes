@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
 import Typography from '@material-ui/core/Typography';
@@ -13,7 +13,6 @@ import Spacer from 'components/Spacer';
 
 const MyAccount = () => {
   const { isAuthenticated, loading, userInfo } = useGlobalContext();
-  const location = useLocation();
 
   if (loading) {
     return null;
@@ -41,7 +40,10 @@ const MyAccount = () => {
               Your tracker widget URL
             </Typography>
 
-            <TextField variant="outlined" value={`${location.origin}/widget/${userInfo.id}/`} />
+            <TextField
+              variant="outlined"
+              value={`${window.location.origin}/widget/${userInfo.id}/`}
+            />
           </Grid>
         </Grid>
       </ThemedWindow>
