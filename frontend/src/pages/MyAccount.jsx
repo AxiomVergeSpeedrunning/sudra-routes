@@ -31,7 +31,7 @@ const MyAccount = () => {
               Your user token
             </Typography>
 
-            <TextField variant="outlined" value={userInfo.token} />
+            <TextField variant="outlined" value={userInfo.token} fullWidth />
             <Spacer v={16} smUp />
           </Grid>
 
@@ -43,6 +43,7 @@ const MyAccount = () => {
             <TextField
               variant="outlined"
               value={`${window.location.origin}/widget/${userInfo.id}/`}
+              fullWidth
             />
           </Grid>
         </Grid>
