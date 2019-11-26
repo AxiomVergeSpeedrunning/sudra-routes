@@ -90,7 +90,6 @@ const TrackerWidget = ({
       <Spacer h={8} />
 
       <Grid item>
-        <Spacer v={8} smUp />
         <Window heading={info.areaName || 'null'}>
           <Row>
             <Item label="Item%" value={info.areaItemPercentage} />
