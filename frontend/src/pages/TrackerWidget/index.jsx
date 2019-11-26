@@ -57,9 +57,9 @@ const TrackerWidget = ({
           </Row>
 
           <Row>
-            <Item label="Item%" value={info.overallItemPercentage} />
+            <Item label="Item%" value={`${info.overallItemPercentage}%`} />
             <Spacer h={8} />
-            <Item label="Map%" value={info.overallMapPercentage} />
+            <Item label="Map%" value={`${info.overallMapPercentage}%`} />
           </Row>
 
           <Row>
@@ -92,9 +92,9 @@ const TrackerWidget = ({
       <Grid item>
         <Window heading={info.areaName || 'null'}>
           <Row>
-            <Item label="Item%" value={info.areaItemPercentage} />
+            <Item label="Item%" value={`${info.areaItemPercentage}%`} />
             <Spacer h={8} />
-            <Item label="Map%" value={info.areaMapPercentage} />
+            <Item label="Map%" value={`${info.areaMapPercentage}%`} />
           </Row>
 
           {info.areaMapPercentage === 100 && <MapDot />}
@@ -107,7 +107,6 @@ const TrackerWidget = ({
 
 TrackerWidget.propTypes = {
   match: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
 };
 
 export default observer(TrackerWidget);

@@ -18,6 +18,9 @@ import MyAccount from 'pages/MyAccount';
 import GlobalContextProvider from 'components/GlobalContextProvider';
 import urls from './urls';
 
+const goodTimes = { fontFamily: 'GoodTimes, Roboto, Helvetica, Arial, sans-serif' };
+const joystix = { fontFamily: 'Joystix, Roboto, Helvetica, Arial, sans-serif' };
+
 const theme = createMuiTheme({
   palette: {
     // TODO: add a toggle for this somewhere on the site, and keep it in context
@@ -30,6 +33,14 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true,
+    h1: goodTimes,
+    h2: goodTimes,
+    h3: goodTimes,
+    h4: joystix,
+    h5: joystix,
+    h6: joystix,
+    subtitle1: joystix,
+    subtitle2: joystix,
   },
 });
 

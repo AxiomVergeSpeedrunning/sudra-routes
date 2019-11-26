@@ -22,7 +22,7 @@ const Item = ({ label, value }) => {
   return (
     <span className={classes.root}>
       <span className={classes.label}>{label}:</span>{' '}
-      <span className={classes.calue}>{value || 'null'}</span>
+      <span className={classes.calue}>{value === null ? 'null' : value}</span>
     </span>
   );
 };
