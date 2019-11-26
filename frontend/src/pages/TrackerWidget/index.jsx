@@ -87,7 +87,7 @@ const TrackerWidget = ({
         </Window>
       </Grid>
 
-      <Spacer h={8} />
+      <Spacer h={8} v={8} />
 
       <Grid item>
         <Window heading={info.areaName || 'null'}>
