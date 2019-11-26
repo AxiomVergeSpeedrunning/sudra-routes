@@ -6,4 +6,6 @@ https://heuristic-elion-193669.netlify.com/* https://sudra-routes.com/:splat 301
 /api/*  https://api.sudra-routes.com/api/:splat  200
 /tracker/*  https://api.sudra-routes.com/tracker/:splat  200
 
+/downloads/* http://com.sudra-routes.downloads.s3-website-us-east-1.amazonaws.com/:splat 200
+
 /*    /index.html   200
