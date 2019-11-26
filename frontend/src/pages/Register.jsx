@@ -52,7 +52,6 @@ const Register = () => {
       const { token } = await api.register({ username, email, password });
       Cookies.set('authToken', token);
       await checkAuthentication();
-      history.push(urls.home);
     } catch (err) {
       enqueueSnackbar('Error signing up - that user might already exist.', {
         variant: 'error',

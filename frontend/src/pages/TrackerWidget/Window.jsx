@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     display: 'block',
     color: '#F08080',
     marginBottom: 8,
+    textTransform: 'uppercase',
   },
 });
 
