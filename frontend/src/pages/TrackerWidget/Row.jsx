@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 
 const Row = ({ children }) => (
-  <Grid container direction="row" wrap="nowrap" justify="space-between">
+  <Grid container direction="row" wrap="nowrap" justify="center">
     {children}
   </Grid>
 );

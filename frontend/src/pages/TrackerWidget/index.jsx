@@ -50,6 +50,7 @@ const TrackerWidget = ({
 
         <Row>
           <Item label="Item%" value={info.overallItemPercentage} />
+          <Spacer h={8} />
           <Item label="Map%" value={info.overallMapPercentage} />
         </Row>
 
@@ -82,6 +83,7 @@ const TrackerWidget = ({
       <Window heading={info.areaName || 'null'}>
         <Row>
           <Item label="Item%" value={info.areaItemPercentage} />
+          <Spacer h={8} />
           <Item label="Map%" value={info.areaMapPercentage} />
         </Row>
 
