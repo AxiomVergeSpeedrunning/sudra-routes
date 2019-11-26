@@ -11,6 +11,7 @@ import Home from 'pages/Home';
 import Dictionary from 'pages/Dictionary';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
+import TrackerWidget from 'pages/TrackerWidget';
 
 import GlobalContextProvider from 'components/GlobalContextProvider';
 import urls from './urls';
@@ -42,6 +43,7 @@ const App = () => (
               <Route exact path={urls.dictionary} component={Dictionary} />
               <Route exact path={urls.login} component={Login} />
               <Route exact path={urls.register} component={Register} />
+              <Route exact path="/widget/:uid/" component={TrackerWidget} />
             </Switch>
           </Nav>
         </GlobalContextProvider>

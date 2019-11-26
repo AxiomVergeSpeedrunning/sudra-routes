@@ -4,7 +4,7 @@ const srcRoot = path.join(__dirname, 'src');
 
 module.exports = {
   parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier'],
+  extends: ['airbnb', 'prettier', 'prettier/react'],
   plugins: ['react', 'prettier'],
   env: {
     browser: true,

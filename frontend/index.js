@@ -12,6 +12,9 @@ const server = new ParcelProxyServer({
     '/api': {
       target: 'http://backend:3001/',
     },
+    '/tracker': {
+      target: 'http://backend:3001',
+    },
   },
 });
 

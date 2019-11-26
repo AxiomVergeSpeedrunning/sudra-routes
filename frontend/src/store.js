@@ -12,12 +12,10 @@ class Store {
   useNav = true;
 
   checkAuthentication = flow(function*() {
-    this.loading = true;
-
     try {
       const { userInfo } = yield api.checkAuthentication();
-
       this.userInfo = userInfo;
+
       this.isAuthenticated = true;
     } catch (e) {
       this.userInfo = {};
@@ -46,4 +44,5 @@ export default decorate(Store, {
   isAuthenticated: observable,
   loading: observable,
   useNav: observable,
+  checkAuthentication: action,
 });

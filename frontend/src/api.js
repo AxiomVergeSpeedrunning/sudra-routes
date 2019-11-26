@@ -40,6 +40,10 @@ class API {
   static async register({ username, email, password }) {
     return this.api.post('auth/register/', { username, email, password });
   }
+
+  static async getTrackerInfo({ uid }) {
+    return this.api.get(`get/${uid}/`, { baseURL: '/tracker' });
+  }
 }
 
 API.initAxios();

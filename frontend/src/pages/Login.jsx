@@ -44,6 +44,7 @@ const Login = () => {
       const { token } = await api.login({ username, password });
       Cookies.set('authToken', token);
       await checkAuthentication();
+      history.push(urls.home);
     } catch (err) {
       enqueueSnackbar('Error logging in. Please check your username and password.', {
         variant: 'error',

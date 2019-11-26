@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    fontFamily: 'GoodTimes',
   },
   toolbar: theme.mixins.toolbar,
   appBar: {
@@ -57,14 +58,14 @@ const Nav = ({ children }) => {
   const location = useLocation();
   const theme = useTheme();
   const onDesktop = useMediaQuery(theme.breakpoints.up('lg'));
-  const { useNav } = useGlobalContext();
+  const store = useGlobalContext();
 
   // Close the navbar whenever the route changes
   useEffect(() => {
     setOpen(false);
   }, [location]);
 
-  if (!useNav) {
+  if (!store.useNav) {
     return children;
   }
 
