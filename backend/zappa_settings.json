@@ -19,6 +19,7 @@
       ],
       "SecurityGroupIds": ["sg-b7edbbc6"]
     },
-    "timeout_seconds": 900
+    "timeout_seconds": 900,
+    "runtime": "python3.7"
   }
 }
