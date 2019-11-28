@@ -1,23 +1,25 @@
 import json
+from .translations import translations
 
-translations = [
-    ('GameDifficulty', 'difficulty'),
-    ('ItemPercent', 'overall_item_percentage'),
-    ('ScreenPercent', 'overall_map_percentage'),
-    ('TraceCurrentHP', 'current_health'),
-    ('TraceMaxHP', 'max_health'),
-    ('BubblesPopped', 'red_goo_destroyed'),
-    ('BlocksBroken', 'bricks_destroyed'),
-    ('CreaturesGlitched', 'creatures_glitched'),
-    ('NumDeaths', 'deaths'),
-    ('InGameAreaName', 'area_name'),
-    ('CurrentAreaItemPercent', 'area_item_percentage'),
-    ('CurrentAreaScreenPercent', 'area_map_percentage'),
-]
+
+def generate_tree(data, instance, translator):
+    for translation in translator:
+        if len(translation) == 3:
+            orig, new, translator = translation
+
+            try:
+                getattr(instance, new)
+            except AttributeError:
+                setattr(instance, new, {})
+
+            generate_tree(data.get(orig), getattr(instance, new), translator)
+            continue
+
+        orig, new = translation
+
+        setattr(instance, new, data.get(orig))
 
 
 def translate_data(data, tracker_info):
     parsed = json.loads(data)
-
-    for orig, new in translations:
-        setattr(tracker_info, new, parsed.get(orig))
+    generate_tree(parsed, tracker_info, translations)
