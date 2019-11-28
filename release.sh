@@ -11,8 +11,8 @@ cd $OWD
 
 cd backend
 source venv/bin/activate
-sudo find . -type d -name '__pycache__' -exec rm -rf '{}' ';'
-sudo find . -type f -iname '*.pyc' -exec rm '{}' ';'
+sudo find . -type d -name '__pycache__' -exec rm -rf '{}' ';' || true
+sudo find . -type f -iname '*.pyc' -exec rm '{}' ';' || true
 
 zappa update production
 zappa manage production migrate
