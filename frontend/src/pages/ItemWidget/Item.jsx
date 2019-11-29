@@ -34,9 +34,11 @@ const Item = ({ name, complete, className: externClassName }) => {
     externClassName,
   );
 
+  const Image = all[name];
+
   return (
     <div className={className}>
-      <img className={classes.img} src={all[name]} alt="" />
+      <Image className={classes.img} />
     </div>
   );
 };
