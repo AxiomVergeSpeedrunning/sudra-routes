@@ -10,16 +10,10 @@ import DeepRedBorder from '../assets/deep-red-border.png';
 import PinkBorder from '../assets/pink-border.png';
 
 const useStyles = makeStyles(theme => ({
-  purple: {
-    borderImageSource: `url(${PurpleBorder})`,
-    backgroundColor: '#000000',
-  },
-  deepRed: {
-    borderImageSource: `url(${DeepRedBorder})`,
-  },
-  pink: {
-    borderImageSource: `url(${PinkBorder})`,
-  },
+  // Used to modify other classes
+  purple: {},
+  deepRed: {},
+  pink: {},
 
   root: {
     padding: theme.spacing(3),
@@ -27,6 +21,19 @@ const useStyles = makeStyles(theme => ({
     borderImage: `url(${NormalBorder}) 10 round`,
     borderRadius: 12,
     backgroundColor: '#130612',
+
+    '&$purple': {
+      borderImageSource: `url(${PurpleBorder})`,
+      backgroundColor: '#000000',
+    },
+
+    '&$deepRed': {
+      borderImageSource: `url(${DeepRedBorder})`,
+    },
+
+    '&$pink': {
+      borderImageSource: `url(${PinkBorder})`,
+    },
   },
 }));
 

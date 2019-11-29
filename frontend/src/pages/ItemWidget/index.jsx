@@ -8,7 +8,8 @@ import Spacer from 'components/Spacer';
 
 import Window from './Window';
 import ItemRow from './ItemRow';
-import { weapons, tools, collectables } from './itemDict';
+import Collectables from './Collectables';
+import { weapons, tools } from './itemDict';
 
 const ItemWidget = () => {
   const { itemInfo } = useTrackerInformation();
@@ -24,6 +25,10 @@ const ItemWidget = () => {
           <ItemRow items={weapons} itemInfo={itemInfo} />
           <ItemRow items={tools} itemInfo={itemInfo} />
         </Grid>
+
+        <Spacer h={16} />
+
+        <Collectables itemInfo={itemInfo} />
       </Window>
     </Grid>
   );
