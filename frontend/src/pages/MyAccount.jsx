@@ -58,6 +58,22 @@ const MyAccount = () => {
             />
           </Grid>
         </Grid>
+
+        <Spacer v={16} />
+
+        <Grid container direction="row" justify="center">
+          <Grid item sm={5} xs={12}>
+            <Typography variant="subtitle1" paragraph>
+              Your item tracker widget URL
+            </Typography>
+
+            <TextField
+              variant="outlined"
+              value={`${window.location.origin}/items/${userInfo.id}/`}
+              fullWidth
+            />
+          </Grid>
+        </Grid>
       </ThemedWindow>
 
       <Spacer v={32} />
