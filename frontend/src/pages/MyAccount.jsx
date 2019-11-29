@@ -100,7 +100,8 @@ const MyAccount = () => {
             <Spacer v={16} />
 
             <Typography variant="subtitle1">
-              3. Open Axiom Verge and click on the red dot in the tracker
+              3. Open Axiom Verge and right click on the tracker. Choose vanilla for the base game
+              and randomizer for the randomized version.
             </Typography>
 
             <Spacer v={16} />
@@ -120,8 +121,7 @@ const MyAccount = () => {
             <Spacer v={16} />
 
             <Typography variant="subtitle1">
-              5. Add your widget URL as a browser source in OBS <br />
-              (min-width 272px)
+              5. Add your widget URL as a browser source in OBS
             </Typography>
 
             <Spacer v={16} />
