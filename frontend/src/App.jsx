@@ -13,7 +13,7 @@ import Dictionary from 'pages/Dictionary';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import TrackerWidget from 'pages/TrackerWidget';
-import TrackerWidget from 'pages/ItemWidget';
+import ItemWidget from 'pages/ItemWidget';
 import MyAccount from 'pages/MyAccount';
 
 import GlobalContextProvider from 'components/GlobalContextProvider';
