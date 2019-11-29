@@ -9,15 +9,15 @@ const all = { ...tools, ...weapons, ...collectables };
 
 const useStyles = makeStyles(() => ({
   complete: {
-    opacity: '100%',
+    opacity: '100% !important',
   },
 
   root: {
-    opacity: '50%',
     width: 32,
     height: 32,
   },
   img: {
+    opacity: '50%',
     height: '100%',
     width: '100%',
   },
@@ -26,19 +26,14 @@ const useStyles = makeStyles(() => ({
 const Item = ({ name, complete, className: externClassName }) => {
   const classes = useStyles();
 
-  const className = classNames(
-    classes.root,
-    {
-      [classes.complete]: complete,
-    },
-    externClassName,
-  );
+  const className = classNames(classes.root, externClassName);
+  const imgClassName = classNames(classes.img, { [classes.complete]: complete });
 
   const Image = all[name];
 
   return (
     <div className={className}>
-      <img className={classes.img} src={Image} alt="" />
+      <img className={imgClassName} src={Image} alt="" />
     </div>
   );
 };
