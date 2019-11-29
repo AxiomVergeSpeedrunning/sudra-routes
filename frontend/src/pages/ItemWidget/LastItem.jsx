@@ -13,7 +13,7 @@ const LastItem = ({ name }) => (
         Last
       </Typography>
 
-      <Item name={name} complete={true} />
+      <Item name={name} complete />
     </Grid>
   </ThemedWindow>
 );

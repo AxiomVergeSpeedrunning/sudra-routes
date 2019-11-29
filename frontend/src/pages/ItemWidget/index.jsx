@@ -9,7 +9,7 @@ import Spacer from 'components/Spacer';
 import Window from './Window';
 import ItemRow from './ItemRow';
 import Collectables from './Collectables';
-import LastItem from './LastItem';
+// import LastItem from './LastItem';
 import { weapons, tools } from './itemDict';
 
 const ItemWidget = () => {
@@ -29,7 +29,7 @@ const ItemWidget = () => {
 
         <Spacer h={16} />
 
-        <LastItem name="note" />
+        {/* <LastItem name="note" /> */}
 
         <Spacer h={16} />
 
