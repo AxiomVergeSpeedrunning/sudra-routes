@@ -19,6 +19,8 @@ const ItemWidget = () => {
     return null;
   }
 
+  console.log(itemInfo);
+
   return (
     <Grid container direction="row" justify="flex-start">
       <Window>

@@ -58,10 +58,10 @@ const tools = {
   grapple,
   highJump,
   labCoat,
-  passwordTool,
-  redCoat,
-  sudranKey,
   trenchCoat,
+  redCoat,
+  passwordTool,
+  sudranKey,
 };
 
 const weapons = {
