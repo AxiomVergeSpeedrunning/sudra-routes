@@ -58,5 +58,10 @@ translations = [
         ('SizeNodeCount', 'size_nodes'),
         ('RangeNodeCount', 'range_nodes'),
         ('NoteCount', 'note_count'),
+        ('LastItem', 'last_item'),
+        ('HealthNode', 'healthNode'),
+        ('PowerNode', 'powerNode'),
+        ('HealthNodeFragment', 'healthFragment'),
+        ('PowerNodeFragment', 'powerFragment'),
     )),
 ]

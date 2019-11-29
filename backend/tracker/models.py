@@ -80,3 +80,6 @@ class ItemTracker(models.Model):
     power_fragments = models.IntegerField(null=True, blank=True)
 
     note_count = models.IntegerField(null=True, blank=True)
+
+    # Misc
+    last_item = models.CharField(max_length=256, null=True, blank=True)
