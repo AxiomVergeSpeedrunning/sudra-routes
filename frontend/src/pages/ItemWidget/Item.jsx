@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     width: '100%',
 
-    '&$img': {
+    '&complete': {
       filter: 'none',
     },
   },
