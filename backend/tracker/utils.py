@@ -31,7 +31,7 @@ def generate_tree(data, instance, translator, is_dict=False):
                 except AttributeError:
                     set(instance, new, {}, is_dict)
 
-            generate_tree(data.get(orig), get(instance, new, is_dict), translator)
+            generate_tree(data.get(orig), get(instance, new, is_dict), translator, is_dict)
             continue
 
         orig, new = translation

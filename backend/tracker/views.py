@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status, serializers
+from rest_framework import status
 from django.db import transaction
 
 from .models import TrackerInformation
@@ -27,15 +27,13 @@ def store(request):
         return Response({}, status=status.HTTP_403_FORBIDDEN)
 
     with transaction.atomic():
+        info = TrackerInformation.objects.select_related('item_info').get(user=request.user)
         json_data = {
-            'user_id': request.user.id,
+            'user': request.user.id,
         }
-        translate_data(request.data, json_data)
-        serialized = TrackerInformationSerializer(data=json_data)
+        translate_data(request.data, json_data, is_dict=True)
+        serialized = TrackerInformationSerializer(info, data=json_data)
 
-        try:
-            serialized.is_valid(raise_exception=True)
-            serialized.save()
-            return serialized.data()
-        except serializers.ValidationError:
-            return Response({}, status=status.HTTP_403_FORBIDDEN)
+        serialized.is_valid()
+        serialized.save(raise_exception=True)
+        return Response(serialized.data)
