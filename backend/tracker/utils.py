@@ -40,7 +40,7 @@ def generate_tree(data, instance, translator, is_dict=False):
             new_value = [i[1] for i in translator if i[0] == data.get(orig)]
 
             if len(new_value) > 0:
-                set(instance, new, new_value, is_dict)
+                set(instance, new, new_value[0], is_dict)
             else:
                 set(instance, new, None, is_dict)
 
