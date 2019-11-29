@@ -13,7 +13,7 @@ const ItemRow = ({ items, itemInfo }) => (
 );
 
 ItemRow.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.object.isRequired,
   itemInfo: PropTypes.object.isRequired,
 };
 

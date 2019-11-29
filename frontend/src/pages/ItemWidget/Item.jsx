@@ -14,8 +14,8 @@ const useStyles = makeStyles(() => ({
 
   root: {
     opacity: '50%',
-    maxWidth: 32,
-    maxHeight: 32,
+    width: 32,
+    height: 32,
   },
   img: {
     height: '100%',
@@ -38,7 +38,7 @@ const Item = ({ name, complete, className: externClassName }) => {
 
   return (
     <div className={className}>
-      <Image className={classes.img} />
+      <img className={classes.img} src={Image} alt="" />
     </div>
   );
 };
