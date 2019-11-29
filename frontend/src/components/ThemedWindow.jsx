@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
   purple: {},
   deepRed: {},
   pink: {},
+  slim: {},
 
   root: {
     padding: theme.spacing(3),
@@ -34,10 +35,14 @@ const useStyles = makeStyles(theme => ({
     '&$pink': {
       borderImageSource: `url(${PinkBorder})`,
     },
+
+    '&$slim': {
+      padding: 4,
+    },
   },
 }));
 
-const ThemedWindow = ({ children, variant, className: externClassName }) => {
+const ThemedWindow = ({ children, variant, slim, className: externClassName }) => {
   const classes = useStyles();
   const className = classNames(
     classes.root,
@@ -45,6 +50,7 @@ const ThemedWindow = ({ children, variant, className: externClassName }) => {
       [classes.purple]: variant === 'purple',
       [classes.deepRed]: variant === 'red',
       [classes.pink]: variant === 'pink',
+      [classes.slim]: slim,
     },
     externClassName,
   );
@@ -56,11 +62,13 @@ ThemedWindow.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   variant: PropTypes.oneOf(['default', 'red', 'purple', 'pink']),
+  slim: PropTypes.bool,
 };
 
 ThemedWindow.defaultProps = {
   className: '',
   variant: 'default',
+  slim: false,
 };
 
 export default ThemedWindow;

@@ -8,9 +8,8 @@ import { tools, weapons, collectables } from './itemDict';
 const all = { ...tools, ...weapons, ...collectables };
 
 const useStyles = makeStyles(() => ({
-  complete: {
-    filter: 'none !important',
-  },
+  // Used to modify other classes
+  complete: {},
 
   root: {
     width: 48,
@@ -20,6 +19,10 @@ const useStyles = makeStyles(() => ({
     filter: 'grayscale(100%)',
     height: '100%',
     width: '100%',
+
+    '&$img': {
+      filter: 'none',
+    },
   },
 }));
 
