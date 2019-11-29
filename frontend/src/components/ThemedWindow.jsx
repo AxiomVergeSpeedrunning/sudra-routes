@@ -48,7 +48,7 @@ const ThemedWindow = ({ children, variant, className: externClassName }) => {
 ThemedWindow.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  variant: PropTypes.oneOf('default', 'red', 'purple', 'pink'),
+  variant: PropTypes.oneOf(['default', 'red', 'purple', 'pink']),
 };
 
 ThemedWindow.defaultProps = {

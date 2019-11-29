@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { observer } from 'mobx-react';
 import Grid from '@material-ui/core/Grid';
 
-import api from 'api';
-import { useGlobalContext } from 'hooks';
+import { useTrackerInformation } from 'hooks';
 
 import Spacer from 'components/Spacer';
 
@@ -14,32 +12,8 @@ import Item from './Item';
 import MapDot from './MapDot';
 import ItemDot from './ItemDot';
 
-const TrackerWidget = ({
-  match: {
-    params: { uid },
-  },
-}) => {
-  const store = useGlobalContext();
-  const [info, setInfo] = useState({});
-
-  useEffect(() => {
-    store.useNav = false;
-
-    return () => {
-      store.useNav = true;
-    };
-  }, []);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      api.getTrackerInfo({ uid }).then(data => setInfo(data));
-    }, 3000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
-
+const TrackerWidget = () => {
+  const info = useTrackerInformation();
   const urlParams = new URLSearchParams(window.location.search);
 
   const hp = info.currentHealth ? `${info.currentHealth}/${info.maxHealth}` : null;
@@ -103,10 +77,6 @@ const TrackerWidget = ({
       </Grid>
     </Grid>
   );
-};
-
-TrackerWidget.propTypes = {
-  match: PropTypes.object.isRequired,
 };
 
 export default observer(TrackerWidget);

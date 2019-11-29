@@ -1,8 +1,4 @@
-import { useContext } from 'react';
-import { useObserver } from 'mobx-react';
-import { GlobalContext } from 'contexts';
+import useGlobalContext from './useGlobalContext';
+import useTrackerInformation from './useTrackerInformation';
 
-const useGlobalContext = () => useObserver(() => useContext(GlobalContext));
-
-// eslint-disable-next-line
-export { useGlobalContext };
+export { useGlobalContext, useTrackerInformation };

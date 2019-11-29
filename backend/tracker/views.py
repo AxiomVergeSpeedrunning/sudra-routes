@@ -27,13 +27,13 @@ def store(request):
         return Response({}, status=status.HTTP_403_FORBIDDEN)
 
     with transaction.atomic():
-        info = TrackerInformation.objects.select_related('item_info').get(user=request.user)
+        info = TrackerInformation.objects.select_related('item_info').filter(user=request.user).first()
         json_data = {
             'user': request.user.id,
         }
         translate_data(request.data, json_data, is_dict=True)
         serialized = TrackerInformationSerializer(info, data=json_data)
 
-        serialized.is_valid()
-        serialized.save(raise_exception=True)
+        serialized.is_valid(raise_exception=True)
+        serialized.save()
         return Response(serialized.data)

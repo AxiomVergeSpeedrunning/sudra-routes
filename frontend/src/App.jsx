@@ -58,6 +58,7 @@ const App = () => (
               <Route exact path={urls.register} component={Register} />
               <Route exact path={urls.account} component={MyAccount} />
               <Route exact path="/widget/:uid/" component={TrackerWidget} />
+              <Route exact path="/items/:uid/" component={TrackerWidget} />
             </Switch>
           </Nav>
         </GlobalContextProvider>

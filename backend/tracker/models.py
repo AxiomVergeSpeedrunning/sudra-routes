@@ -48,8 +48,10 @@ class ItemTracker(models.Model):
     disruptor = models.BooleanField(null=True, blank=True)
     data_bomb = models.BooleanField(null=True, blank=True)
     distortion_field = models.BooleanField(null=True, blank=True)
+    fat_beam = models.BooleanField(null=True, blank=True)
     firewall = models.BooleanField(null=True, blank=True)
     flamethrower = models.BooleanField(null=True, blank=True)
+    heat_seeker = models.BooleanField(null=True, blank=True)
     inertial_pulse = models.BooleanField(null=True, blank=True)
     ion_beam = models.BooleanField(null=True, blank=True)
     kilver = models.BooleanField(null=True, blank=True)
@@ -58,6 +60,7 @@ class ItemTracker(models.Model):
     nova = models.BooleanField(null=True, blank=True)
     reflector = models.BooleanField(null=True, blank=True)
     reverse_slicer = models.BooleanField(null=True, blank=True)
+    scissorBeam = models.BooleanField(null=True, blank=True)
     shards = models.BooleanField(null=True, blank=True)
     quantum_variegator = models.BooleanField(null=True, blank=True)
     tethered_charge = models.BooleanField(null=True, blank=True)
@@ -69,6 +72,9 @@ class ItemTracker(models.Model):
     # Collectables
     health_nodes = models.IntegerField(null=True, blank=True)
     power_nodes = models.IntegerField(null=True, blank=True)
+
+    size_nodes = models.IntegerField(null=True, blank=True)
+    range_nodes = models.IntegerField(null=True, blank=True)
 
     health_fragments = models.IntegerField(null=True, blank=True)
     power_fragments = models.IntegerField(null=True, blank=True)
