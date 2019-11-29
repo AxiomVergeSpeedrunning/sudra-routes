@@ -9,7 +9,7 @@ const all = { ...tools, ...weapons, ...collectables };
 
 const useStyles = makeStyles(() => ({
   complete: {
-    opacity: '100% !important',
+    filter: 'none !important',
   },
 
   root: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     height: 32,
   },
   img: {
-    opacity: '50%',
+    filter: 'grayscale(100%)',
     height: '100%',
     width: '100%',
   },
