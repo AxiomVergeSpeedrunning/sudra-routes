@@ -60,7 +60,7 @@ class ItemTracker(models.Model):
     nova = models.BooleanField(null=True, blank=True)
     reflector = models.BooleanField(null=True, blank=True)
     reverse_slicer = models.BooleanField(null=True, blank=True)
-    scissorBeam = models.BooleanField(null=True, blank=True)
+    scissor_beam = models.BooleanField(null=True, blank=True)
     shards = models.BooleanField(null=True, blank=True)
     quantum_variegator = models.BooleanField(null=True, blank=True)
     tethered_charge = models.BooleanField(null=True, blank=True)
