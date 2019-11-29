@@ -49,7 +49,7 @@ translations = [
         ('VerticalSpread', 'hypo_atomizer'),
         ('Voranj', 'voranj'),
         ('WallTrace', 'orbital_discharge'),
-        ('ScissorBeam', 'scissor_beam'),
+        ('WebSlicer', 'scissor_beam'),
         ('TriCone', 'turbine_pulse'),
         ('HNodeCount', 'health_nodes'),
         ('PNodeCount', 'power_nodes'),
