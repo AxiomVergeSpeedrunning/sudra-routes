@@ -52,5 +52,6 @@ translations = [
         ('PNodeCount', 'power_nodes'),
         ('HNodeFCount', 'health_fragments'),
         ('PNodeFCount', 'power_fragments'),
+        ('NoteCount', 'note_count'),
     )),
 ]

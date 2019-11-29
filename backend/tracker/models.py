@@ -72,3 +72,5 @@ class ItemTracker(models.Model):
 
     health_fragments = models.IntegerField(null=True, blank=True)
     power_fragments = models.IntegerField(null=True, blank=True)
+
+    note_count = models.IntegerField(null=True, blank=True)
