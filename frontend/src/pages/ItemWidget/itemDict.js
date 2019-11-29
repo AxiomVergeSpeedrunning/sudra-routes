@@ -68,10 +68,8 @@ const weapons = {
   disruptor,
   dataBomb,
   distortionField,
-  fatBeam,
   firewall,
   flamethrower,
-  heatSeeker,
   inertialPulse,
   ionBeam,
   kilver,
@@ -80,7 +78,6 @@ const weapons = {
   nova,
   reflector,
   reverseSlicer,
-  scissorBeam,
   shards,
   quantumVariegator,
   tetheredCharge,
@@ -88,6 +85,9 @@ const weapons = {
   voranj,
   orbitalDischarge,
   turbinePulse,
+  scissorBeam,
+  fatBeam,
+  heatSeeker,
 };
 
 const collectables = {
