@@ -28,6 +28,15 @@ const useTrackerInformation = () => {
     };
   });
 
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.get('log')) {
+      // eslint-disable-next-line
+      console.log(info);
+    }
+  });
+
   return info;
 };
 
