@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'backend.ip_middleware.IpMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -98,6 +99,13 @@ DATABASES = {
         'DATABASE_URL',
         default='postgres://postgres:postgres@db/postgres',
     ),
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'django_cache_table',
+    }
 }
 
 
@@ -183,3 +191,5 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 CORS_URLS_REGEX = r'^/api/.*$'
+
+RATELIMIT_ENABLE = PRODUCTION

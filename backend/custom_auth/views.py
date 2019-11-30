@@ -1,3 +1,4 @@
+from ratelimit.decorators import ratelimit
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
@@ -10,6 +11,7 @@ from django.contrib.auth.models import User
 from backend.serializers import UserSerializer
 
 
+@ratelimit(key='ip', rate='50/hr', block=True)
 @api_view(['POST'])
 def login(request):
     username = request.data['username']
@@ -25,6 +27,7 @@ def login(request):
     return Response({'token': token.key, 'user_info': UserSerializer(user).data})
 
 
+@ratelimit(key='ip', rate='10/hr', block=True)
 @api_view(['POST'])
 def register(request):
     username = request.data['username']
