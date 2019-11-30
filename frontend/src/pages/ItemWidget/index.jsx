@@ -29,7 +29,7 @@ const ItemWidget = () => {
 
         <Spacer h={16} />
 
-        <LastItem name={itemInfo.lastItem} />
+        <LastItem itemInfo={itemInfo} />
 
         <Spacer h={16} />
 

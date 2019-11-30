@@ -5,21 +5,24 @@ import Grid from '@material-ui/core/Grid';
 
 import ThemedWindow from 'components/ThemedWindow';
 import Item from './Item';
+import CollectableEntry from './CollectableEntry';
 
-const LastItem = ({ name }) => (
+const LastItem = ({ itemInfo: { lastItem, noteCount } }) => (
   <ThemedWindow variant="red" slim>
     <Grid container direction="column" alignItems="center">
       <Typography variant="subtitle2" paragraphy>
         Last
       </Typography>
 
-      <Item name={name} complete />
+      <Item name={lastItem} complete />
+
+      <CollectableEntry name="note" number={noteCount} total={28} />
     </Grid>
   </ThemedWindow>
 );
 
 LastItem.propTypes = {
-  name: PropTypes.string.isRequired,
+  itemInfo: PropTypes.object.isRequired,
 };
 
 export default LastItem;
