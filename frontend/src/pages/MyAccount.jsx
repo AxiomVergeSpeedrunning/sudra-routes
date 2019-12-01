@@ -88,7 +88,8 @@ const MyAccount = () => {
         <ThemedWindow>
           <Grid container direction="column" alignItems="center" alignContent="center">
             <Typography variant="subtitle1">
-              1. <Link href="/downloads/tracker.zip">Click here</Link> to download the tracker
+              1. <Link href="/downloads/tools.zip">Click here</Link> to download the tracker tools
+              and install it
             </Typography>
 
             <Typography variant="subtitle1">2. Open it, and input your token from above</Typography>
