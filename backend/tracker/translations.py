@@ -26,7 +26,7 @@ translations = [
         ('FatBeam', 'fat_beam'),
         ('FireWall', 'firewall'),
         ('FlameThrower', 'flamethrower'),
-        ('Heatseeker', 'heat_seeker'),
+        ('HeatSeeker', 'heat_seeker'),
         ('GlitchBomb', 'address_bomb'),
         ('GlitchTeleport', 'lab_coat'),
         ('Grapple', 'grapple'),
