@@ -63,6 +63,8 @@ translations = [
         ('PowerNode', 'powerNode'),
         ('HealthNodeFragment', 'healthFragment'),
         ('PowerNodeFragment', 'powerFragment'),
+        ('SizeNode', 'sizeNode'),
+        ('RangeNode', 'rangeNode'),
         ('Note', 'note'),
     )),
 ]
