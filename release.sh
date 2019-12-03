@@ -5,7 +5,7 @@ set -euo pipefail
 export OWD=$PWD
 
 cd frontend/static/downloads
-aws s3 sync . s3://com.sudra-routes.downloads/
+aws s3 sync --acl "public-read" . s3://com.sudra-routes.downloads/
 
 cd $OWD
 
