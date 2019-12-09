@@ -42,7 +42,7 @@ const Login = () => {
 
     try {
       const { token } = await api.login({ username, password });
-      Cookies.set('authToken', token);
+      Cookies.set('authToken', token, { expires: 14 });
       await checkAuthentication();
       history.push(urls.home);
     } catch (err) {
