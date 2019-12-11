@@ -1,12 +1,15 @@
 from rest_framework import serializers
 from .models import Tutorial
 
-from backend.serializers import UserSerializer
+
+class BaseMeta:
+    exclude = ['author']
 
 
-class TutorialSerializer(serializers.ModelSerializer):
-    class Meta:
+class BaseSerializer(serializers.ModelSerializer):
+    pass
+
+
+class TutorialSerializer(BaseSerializer):
+    class Meta(BaseMeta):
         model = Tutorial
-        fields = ['id', 'content', 'author']
-
-    author = UserSerializer()

@@ -5,6 +5,9 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { SnackbarProvider } from 'notistack';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+import Cookies from 'js-cookie';
 
 import Nav from 'components/Nav';
 
@@ -45,27 +48,37 @@ const theme = createMuiTheme({
   },
 });
 
+const apolloClient = new ApolloClient({
+  uri: '/api/v1/graphql/',
+  request: operation => {
+    const authToken = Cookies.get('authToken');
+    operation.setContext({ headers: { Authorization: authToken ? `Token ${authToken}` : '' } });
+  },
+});
+
 const App = () => (
-  <SnackbarProvider maxSnack={3}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <GlobalContextProvider>
-          <Nav>
-            <Switch>
-              <Route exact path={urls.home} component={Home} />
-              <Route exact path={urls.dictionary} component={Dictionary} />
-              <Route exact path={urls.login} component={Login} />
-              <Route exact path={urls.register} component={Register} />
-              <Route exact path={urls.account} component={MyAccount} />
-              <Route exact path="/widget/:uid/" component={TrackerWidget} />
-              <Route exact path="/items/:uid/" component={ItemWidget} />
-            </Switch>
-          </Nav>
-        </GlobalContextProvider>
-      </Router>
-    </ThemeProvider>
-  </SnackbarProvider>
+  <ApolloProvider client={apolloClient}>
+    <SnackbarProvider maxSnack={3}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <GlobalContextProvider>
+            <Nav>
+              <Switch>
+                <Route exact path={urls.home} component={Home} />
+                <Route exact path={urls.dictionary} component={Dictionary} />
+                <Route exact path={urls.login} component={Login} />
+                <Route exact path={urls.register} component={Register} />
+                <Route exact path={urls.account} component={MyAccount} />
+                <Route exact path="/widget/:uid/" component={TrackerWidget} />
+                <Route exact path="/items/:uid/" component={ItemWidget} />
+              </Switch>
+            </Nav>
+          </GlobalContextProvider>
+        </Router>
+      </ThemeProvider>
+    </SnackbarProvider>
+  </ApolloProvider>
 );
 
 export default observer(App);
