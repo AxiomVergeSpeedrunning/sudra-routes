@@ -28,7 +28,8 @@ class TutorialSerializerMutation(SerializerMutation):
 
     @classmethod
     def perform_mutate(cls, serializer, info):
-        serializer.validated_data['author'] = info.context.user
+        if serializer.instance is None:
+            serializer.validated_data['author'] = info.context.user
         return super(TutorialSerializerMutation, cls).perform_mutate(serializer, info)
 
     @classmethod
