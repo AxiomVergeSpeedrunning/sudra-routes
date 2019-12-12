@@ -21,7 +21,7 @@ const useTrackerInformation = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       api.getTrackerInfo({ uid }).then(data => setInfo(data));
-    }, 3000);
+    }, 800);
 
     return () => {
       clearInterval(intervalId);
