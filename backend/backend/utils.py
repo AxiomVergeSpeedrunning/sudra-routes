@@ -37,9 +37,17 @@ class TutorialSerializerMutation(SerializerMutation):
             raise PermissionDenied
 
         if 'id' in input:
-            instance = cls._meta.model_class.objects.filter(
-                id=input['id'], author=info.context.user
-            ).first()
+            instance = None
+
+            # Superusers can modify other user's submissions
+            if info.context.user.is_superuser:
+                instance = cls._meta.model_class.objects.filter(
+                    id=input['id']
+                ).first()
+            else:
+                instance = cls._meta.model_class.objects.filter(
+                    id=input['id'], author=info.context.user
+                ).first()
 
             if instance:
                 return {'instance': instance, 'data': input, 'partial': True}
