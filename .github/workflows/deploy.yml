@@ -1,0 +1,27 @@
+name: Deploy Backend
+
+'on':
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.7'
+          architecture: 'x64'
+      - name: Create virtualenv
+        run: pip install virtualenv && virtualenv venv
+        working-directory: backend
+      - name: Install dependencies
+        run: source venv/bin/activate && pip install -r requirements.txt
+        working-directory: backend
+      - name: Deploy the backend
+        run: ./release.sh
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
