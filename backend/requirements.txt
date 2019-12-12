@@ -16,3 +16,5 @@ graphene==2.1.8
 graphene-django==2.7.1
 django-filter==2.2.0
 graphene-django-extras==0.4.8
+zappa==0.48.2
+zappa-django-utils==0.4.0
