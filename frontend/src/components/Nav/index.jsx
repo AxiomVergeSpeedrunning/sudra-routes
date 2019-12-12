@@ -100,7 +100,7 @@ const Nav = ({ children }) => {
 
       <Container className={classes.content} maxWidth="md">
         <div className={classes.toolbar} />
-        {children}
+        {!store.loading && children}
       </Container>
     </div>
   );
