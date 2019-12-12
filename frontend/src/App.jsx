@@ -19,6 +19,11 @@ import TrackerWidget from 'pages/TrackerWidget';
 import ItemWidget from 'pages/ItemWidget';
 import MyAccount from 'pages/MyAccount';
 
+import Tutorials from 'pages/Tutorials';
+import CreateTutorial from 'pages/Tutorials/Create';
+import ViewTutorial from 'pages/Tutorials/View';
+import EditTutorial from 'pages/Tutorials/Edit';
+
 import GlobalContextProvider from 'components/GlobalContextProvider';
 import urls from './urls';
 
@@ -37,9 +42,12 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true,
-    h1: goodTimes,
-    h2: goodTimes,
-    h3: goodTimes,
+    h1: {
+      ...goodTimes,
+      fontSize: '4rem',
+    },
+    h2: { ...goodTimes, fontSize: '3rem' },
+    h3: { ...goodTimes, fontSize: '2rem' },
     h4: joystix,
     h5: joystix,
     h6: joystix,
@@ -70,6 +78,10 @@ const App = () => (
                 <Route exact path={urls.login} component={Login} />
                 <Route exact path={urls.register} component={Register} />
                 <Route exact path={urls.account} component={MyAccount} />
+                <Route exact path={urls.tutorials.root} component={Tutorials} />
+                <Route exact path={urls.tutorials.create} component={CreateTutorial} />
+                <Route exact path={`${urls.tutorials.view}:id/`} component={ViewTutorial} />
+                <Route exact path={`${urls.tutorials.edit}:id/`} component={EditTutorial} />
                 <Route exact path="/widget/:uid/" component={TrackerWidget} />
                 <Route exact path="/items/:uid/" component={ItemWidget} />
               </Switch>

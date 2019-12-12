@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class UserNode(DjangoObjectType):
     class Meta:
         model = User
-        filter_fields = ['id', 'username', 'email']
+        fields = ['id', 'username', 'email', 'is_staff', 'is_superuser']
 
 
 class Query(object):
@@ -15,4 +15,7 @@ class Query(object):
     users = List(UserNode)
 
     def resolve_users(self, info, **kwargs):
+        if not info.context.user.is_superuser:
+            return User.objects.none()
+
         return User.objects.all()

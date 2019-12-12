@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class TutorialBase(models.Model):
     class Meta:
         abstract = True
-        ordering = ('pk',)
+        ordering = ('title',)
 
     title = models.CharField(max_length=256, null=True)
     content = models.TextField(null=True)

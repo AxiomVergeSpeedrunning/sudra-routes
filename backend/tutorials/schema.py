@@ -1,5 +1,6 @@
-from graphene import ObjectType, Field, List
+from graphene import ObjectType, List, Int
 from graphene_django.types import DjangoObjectType
+from graphene_django_extras import DjangoObjectField
 
 from backend.utils import TutorialSerializerMutation
 
@@ -19,7 +20,7 @@ class TutorialMutation(TutorialSerializerMutation):
 
 
 class Query(object):
-    tutorial = Field(TutorialNode)
+    tutorial = DjangoObjectField(TutorialNode, id=Int())
     tutorials = List(TutorialNode)
 
     def resolve_tutorials(self, info, **kwargs):
