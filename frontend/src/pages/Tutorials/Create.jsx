@@ -2,22 +2,21 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { useSnackbar } from 'notistack';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import gql from 'graphql-tag';
 
-import MarkdownEditor from 'components/MarkdownEditor';
-import Spacer from 'components/Spacer';
 import { useStaffRedirect, useMutation } from 'hooks';
 import urls from 'urls';
 
+import EditPage from './EditPage';
+
 const CREATE_TUTORIAL = gql`
-  mutation AddTutorial($input: TutorialMutationInput!) {
+  mutation CreateTutorial($input: CreateTutorialInput!) {
     createTutorial(input: $input) {
-      id
-      title
-      content
+      tutorial {
+        id
+        title
+        content
+      }
     }
   }
 `;
@@ -41,7 +40,7 @@ const Create = () => {
 
   const Redirect = useStaffRedirect();
 
-  const handleSubmit = () => {
+  const onSubmit = () => {
     if (!title || !content) {
       enqueueSnackbar('Please fill out both fields', { variant: 'error' });
       return;
@@ -55,40 +54,16 @@ const Create = () => {
     }
   };
 
-  return (
-    <>
-      <Redirect />
+  const pageProps = {
+    title,
+    setTitle,
+    content,
+    setContent,
+    loading,
+    onSubmit,
+  };
 
-      <TextField
-        variant="outlined"
-        onChange={e => setTitle(e.target.value)}
-        label="Title"
-        placeholder="Title"
-        fullWidth
-      />
-
-      <Spacer v={32} />
-
-      <MarkdownEditor value={content} onChange={setContent} />
-
-      <Typography variant="caption" align="right" component="div">
-        To embed a YouTube video, simply paste the embed code
-      </Typography>
-
-      <Spacer v={16} />
-
-      <Button
-        variant="contained"
-        fullWidth
-        size="large"
-        onClick={handleSubmit}
-        color="primary"
-        disabled={loading}
-      >
-        {loading ? 'Loading...' : 'Submit'}
-      </Button>
-    </>
-  );
+  return <EditPage {...pageProps} />;
 };
 
 export default observer(Create);

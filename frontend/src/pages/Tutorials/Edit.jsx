@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { useSnackbar } from 'notistack';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import MarkdownEditor from 'components/MarkdownEditor';
-import Spacer from 'components/Spacer';
-import { useStaffRedirect, useMutation } from 'hooks';
+import { useStaffRedirect } from 'hooks';
 import urls from 'urls';
+
+import EditPage from './EditPage';
 
 const GET_TUTORIAL = gql`
   query Tutorial($id: ID!) {
@@ -24,11 +21,13 @@ const GET_TUTORIAL = gql`
 `;
 
 const UPDATE_TUTORIAL = gql`
-  mutation AddTutorial($input: TutorialMutationInput!) {
-    createTutorial(input: $input) {
-      id
-      title
-      content
+  mutation updateTutorial($id: ID!, $input: PatchTutorialInput!) {
+    updateTutorial(id: $id, input: $input) {
+      tutorial {
+        id
+        title
+        content
+      }
     }
   }
 `;
@@ -69,7 +68,7 @@ const Edit = () => {
     return null;
   }
 
-  const handleSubmit = () => {
+  const onSubmit = () => {
     if (!title || !content) {
       enqueueSnackbar('Please fill out both fields', { variant: 'error' });
       return;
@@ -77,47 +76,22 @@ const Edit = () => {
 
     try {
       setLoading(true);
-      updateTutorial({ id, title, content });
+      updateTutorial({ variables: { id, input: { title, content } } });
     } finally {
       setLoading(false);
     }
   };
 
-  return (
-    <>
-      <Redirect />
+  const pageProps = {
+    title,
+    setTitle,
+    content,
+    setContent,
+    loading,
+    onSubmit,
+  };
 
-      <TextField
-        variant="outlined"
-        onChange={e => setTitle(e.target.value)}
-        value={title}
-        label="Title"
-        placeholder="Title"
-        fullWidth
-      />
-
-      <Spacer v={32} />
-
-      <MarkdownEditor value={content} onChange={setContent} />
-
-      <Typography variant="caption" align="right" component="div">
-        To embed a YouTube video, simply paste the embed code
-      </Typography>
-
-      <Spacer v={16} />
-
-      <Button
-        variant="contained"
-        fullWidth
-        size="large"
-        onClick={handleSubmit}
-        color="primary"
-        disabled={loading}
-      >
-        {loading ? 'Loading...' : 'Submit'}
-      </Button>
-    </>
-  );
+  return <EditPage {...pageProps} />;
 };
 
 export default observer(Edit);

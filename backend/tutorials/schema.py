@@ -1,22 +1,38 @@
 from graphene import ObjectType, List, Int
 from graphene_django.types import DjangoObjectType
 from graphene_django_extras import DjangoObjectField
+from graphene_django_cud.mutations import DjangoCreateMutation, DjangoPatchMutation
 
-from backend.utils import TutorialSerializerMutation
-
+from backend.utils import user_is_staff
 from .models import Tutorial
-from .serializers import TutorialSerializer
 
 
 class TutorialNode(DjangoObjectType):
     class Meta:
         model = Tutorial
-        filter_fields = ['id', 'author', 'title', 'content']
 
 
-class TutorialMutation(TutorialSerializerMutation):
+class CreateTutorialMutation(DjangoCreateMutation):
     class Meta:
-        serializer_class = TutorialSerializer
+        model = Tutorial
+        auto_context_fields = {
+            'author': 'user',
+        }
+
+    @classmethod
+    @user_is_staff
+    def check_permissions(cls, *args, **kwargs):
+        super().check_permissions(*args, **kwargs)
+
+
+class UpdateTutorialMutation(DjangoPatchMutation):
+    class Meta:
+        model = Tutorial
+
+    @classmethod
+    @user_is_staff
+    def check_permissions(cls, *args, **kwargs):
+        super().check_permissions(*args, **kwargs)
 
 
 class Query(object):
@@ -28,5 +44,5 @@ class Query(object):
 
 
 class Mutation(ObjectType):
-    create_tutorial = TutorialMutation.Field()
-    update_tutorial = TutorialMutation.Field()
+    create_tutorial = CreateTutorialMutation.Field()
+    update_tutorial = UpdateTutorialMutation.Field()

@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from backend.mixins import TimestampMixin
 
-class TutorialBase(models.Model):
+
+class TutorialBase(TimestampMixin):
     class Meta:
         abstract = True
         ordering = ('title',)

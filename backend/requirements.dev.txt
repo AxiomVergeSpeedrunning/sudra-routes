@@ -1,2 +1,3 @@
 -r requirements.txt
 flake8==3.7.8
+bpython==0.18

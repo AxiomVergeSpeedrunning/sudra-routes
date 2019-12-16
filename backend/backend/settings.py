@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'tutorials',
     'custom_auth',
     'tracker',
+    'routes',
 ]
 
 MIDDLEWARE = [

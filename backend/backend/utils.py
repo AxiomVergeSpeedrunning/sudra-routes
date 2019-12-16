@@ -1,6 +1,4 @@
-from graphene_django.rest_framework.mutation import SerializerMutation
 from django.core.exceptions import PermissionDenied
-from django import http
 from graphene_django.views import GraphQLView
 
 import rest_framework
@@ -22,37 +20,21 @@ class DRFAuthenticatedGraphQLView(GraphQLView):
         return view
 
 
-class TutorialSerializerMutation(SerializerMutation):
-    class Meta:
-        abstract = True
-
-    @classmethod
-    def perform_mutate(cls, serializer, info):
-        if serializer.instance is None:
-            serializer.validated_data['author'] = info.context.user
-        return super(TutorialSerializerMutation, cls).perform_mutate(serializer, info)
-
-    @classmethod
-    def get_serializer_kwargs(cls, root, info, **input):
-        if not info.context.user.is_authenticated or not info.context.user.is_staff:
+def user_is_superuser(func):
+    def wrapped(*args, **kwargs):
+        if not args[2].context.user.is_superuser:
             raise PermissionDenied
 
-        if 'id' in input:
-            instance = None
+        return func(*args, **kwargs)
 
-            # Superusers can modify other user's submissions
-            if info.context.user.is_superuser:
-                instance = cls._meta.model_class.objects.filter(
-                    id=input['id']
-                ).first()
-            else:
-                instance = cls._meta.model_class.objects.filter(
-                    id=input['id'], author=info.context.user
-                ).first()
+    return wrapped
 
-            if instance:
-                return {'instance': instance, 'data': input, 'partial': True}
-            else:
-                raise http.Http404
 
-        return {'data': input, 'partial': True}
+def user_is_staff(func):
+    def wrapped(*args, **kwargs):
+        if not args[2].context.user.is_staff:
+            raise PermissionDenied
+
+        return func(*args, **kwargs)
+
+    return wrapped

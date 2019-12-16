@@ -35,7 +35,7 @@ const View = () => {
   const { id } = useParams();
   const { loading, data } = useQuery(GET_TUTORIAL, { variables: { id: Number(id) } });
 
-  if (loading) {
+  if (loading || !data) {
     return null;
   }
 
