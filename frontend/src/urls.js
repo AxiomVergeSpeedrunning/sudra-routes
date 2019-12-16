@@ -1,14 +1,15 @@
-const tRoot = '/tutorials/';
+const resources = root => ({
+  root,
+  create: `${root}create/`,
+  view: `${root}view/`,
+  edit: `${root}edit/`,
+});
 
 const urls = {
   home: '/',
-  tutorials: {
-    root: tRoot,
-    create: `${tRoot}create/`,
-    view: `${tRoot}view/`,
-    edit: `${tRoot}edit/`,
-  },
-  routes: '/routes/',
+  tutorials: resources('/tutorials/'),
+  categories: resources('/categories/'),
+  routes: resources('/routes/'),
   race: '/race/',
   streams: '/streams/',
   dictionary: '/dictionary/',

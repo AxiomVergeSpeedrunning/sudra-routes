@@ -9,6 +9,7 @@ import PencilIcon from '@material-ui/icons/Create';
 import urls from 'urls';
 import { useGlobalContext } from 'hooks';
 
+import HumanDate from 'components/HumanDate';
 import Link from 'components/Link';
 import FixedFab from 'components/FixedFab';
 import ThemedWindow from 'components/ThemedWindow';
@@ -39,17 +40,7 @@ const View = () => {
     return null;
   }
 
-  const formatOptions = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-  };
-
   const { tutorial } = data;
-  const created = new Date(tutorial.createdAt).toLocaleDateString('en-US', formatOptions);
-  const updated = new Date(tutorial.updatedAt).toLocaleDateString('en-US', formatOptions);
 
   const canEdit =
     userInfo.isSuperuser || (userInfo.isStaff && tutorial.author.username === userInfo.username);
@@ -68,11 +59,11 @@ const View = () => {
         </Typography>
 
         <Typography variant="subtitle2" align="right">
-          created {created}
+          created <HumanDate date={tutorial.createdAt} />
         </Typography>
 
         <Typography variant="subtitle2" align="right">
-          updated {updated}
+          updated <HumanDate date={tutorial.updatedAt} />
         </Typography>
       </ThemedWindow>
 

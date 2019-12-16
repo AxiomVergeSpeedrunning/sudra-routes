@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { useSnackbar } from 'notistack';
+import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
-import { useStaffRedirect, useMutation } from 'hooks';
+import { useStaffRedirect } from 'hooks';
 import urls from 'urls';
 
 import EditPage from './EditPage';
@@ -48,7 +49,7 @@ const Create = () => {
 
     try {
       setLoading(true);
-      createTutorial({ title, content });
+      createTutorial({ variables: { input: { title, content } } });
     } finally {
       setLoading(false);
     }
@@ -63,7 +64,12 @@ const Create = () => {
     onSubmit,
   };
 
-  return <EditPage {...pageProps} />;
+  return (
+    <>
+      <Redirect />
+      <EditPage {...pageProps} />
+    </>
+  );
 };
 
 export default observer(Create);

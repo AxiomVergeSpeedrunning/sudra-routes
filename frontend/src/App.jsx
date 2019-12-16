@@ -24,6 +24,8 @@ import CreateTutorial from 'pages/Tutorials/Create';
 import ViewTutorial from 'pages/Tutorials/View';
 import EditTutorial from 'pages/Tutorials/Edit';
 
+import Categories from 'pages/Categories';
+
 import GlobalContextProvider from 'components/GlobalContextProvider';
 import urls from './urls';
 
@@ -78,10 +80,14 @@ const App = () => (
                 <Route exact path={urls.login} component={Login} />
                 <Route exact path={urls.register} component={Register} />
                 <Route exact path={urls.account} component={MyAccount} />
+
+                <Route exact path={urls.categories.root} component={Categories} />
+
                 <Route exact path={urls.tutorials.root} component={Tutorials} />
                 <Route exact path={urls.tutorials.create} component={CreateTutorial} />
                 <Route exact path={`${urls.tutorials.view}:id/`} component={ViewTutorial} />
                 <Route exact path={`${urls.tutorials.edit}:id/`} component={EditTutorial} />
+
                 <Route exact path="/widget/:uid/" component={TrackerWidget} />
                 <Route exact path="/items/:uid/" component={ItemWidget} />
               </Switch>

@@ -27,7 +27,7 @@ import { useGlobalContext } from 'hooks';
 const list = [
   [HomeIcon, urls.home, 'Home'],
   [MenuBookIcon, urls.tutorials.root, 'Tutorials'],
-  [ExitToAppIcon, urls.routes, 'Routes'],
+  [ExitToAppIcon, urls.categories.root, 'Routes'],
   [BookIcon, urls.dictionary, 'Dictionary'],
   [TrafficIcon, urls.race, 'Race'],
   [GamepadIcon, urls.streams, 'Streams'],

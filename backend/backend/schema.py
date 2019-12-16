@@ -9,7 +9,7 @@ class Query(tutorials_schema.Query, auth_schema.Query, routes_schema.Query, grap
     pass
 
 
-class Mutation(tutorials_schema.Mutation, graphene.ObjectType):
+class Mutation(tutorials_schema.Mutation, routes_schema.Mutation, graphene.ObjectType):
     pass
 
 

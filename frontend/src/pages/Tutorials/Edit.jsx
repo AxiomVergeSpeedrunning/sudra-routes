@@ -91,7 +91,12 @@ const Edit = () => {
     onSubmit,
   };
 
-  return <EditPage {...pageProps} />;
+  return (
+    <>
+      <Redirect />
+      <EditPage {...pageProps} />
+    </>
+  );
 };
 
 export default observer(Edit);
