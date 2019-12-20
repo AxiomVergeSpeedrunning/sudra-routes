@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import Grid from '@material-ui/core/Grid';
 import AddIcon from '@material-ui/icons/Add';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import Link from 'components/Link';
 import FixedFab from 'components/FixedFab';
@@ -34,7 +35,7 @@ const TutorialsPage = () => {
   }, []);
 
   if (loading) {
-    return null;
+    return <LinearProgress />;
   }
 
   return (

@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { useGlobalContext } from 'hooks';
 import urls from 'urls';
@@ -20,7 +21,7 @@ const MyAccount = () => {
   const { isAuthenticated, loading, userInfo } = useGlobalContext();
 
   if (loading) {
-    return null;
+    return <LinearProgress />;
   }
 
   if (!isAuthenticated) {
