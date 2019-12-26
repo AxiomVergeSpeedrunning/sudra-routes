@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Typography from '@material-ui/core/Typography';
 import PencilIcon from '@material-ui/icons/Create';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import urls from 'urls';
 import { useGlobalContext } from 'hooks';
@@ -37,7 +38,7 @@ const View = () => {
   const { loading, data } = useQuery(GET_TUTORIAL, { variables: { id: Number(id) } });
 
   if (loading || !data) {
-    return null;
+    return <LinearProgress />;
   }
 
   const { tutorial } = data;
