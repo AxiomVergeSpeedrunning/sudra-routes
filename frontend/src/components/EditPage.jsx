@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { useStaffRedirect } from 'hooks';
 
+import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -31,7 +32,11 @@ const EditPage = ({ title, setTitle, content, setContent, onSubmit, loading }) =
       <MarkdownEditor value={content} onChange={setContent} />
 
       <Typography variant="caption" align="right" component="div">
-        To embed a YouTube video, simply paste the embed code
+        To embed a YouTube video, simply paste the URL (e.g.{' '}
+        <Link href="https://www.youtube.com/watch?v=p7U_1NOyw8M">
+          https://www.youtube.com/watch?v=p7U_1NOyw8M
+        </Link>
+        )
       </Typography>
 
       <Spacer v={16} />
