@@ -8524,6 +8524,11 @@ yargs@^14.0.0:
     y18n "^4.0.0"
     yargs-parser "^15.0.0"
 
+youtube-embed-video@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/youtube-embed-video/-/youtube-embed-video-1.2.1.tgz#69f8cf9ab7de86c3052929135b24d029248dd870"
+  integrity sha512-kbWZMt9ZJLvPYcDTol6JNUNZrfvI9psdVOUglRbU6lbYjeRaigVbgM7fk5cVLNjvrhyrxQWnrqZepnqGZPDVrA==
+
 zen-observable-ts@^0.8.20:
   version "0.8.20"
   resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.20.tgz#44091e335d3fcbc97f6497e63e7f57d5b516b163"

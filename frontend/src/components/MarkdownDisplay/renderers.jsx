@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import YoutubeVideo from 'components/YoutubeVideo';
 
 const Heading = ({ level, ...props }) => <Typography {...props} variant={`h${level.toString()}`} />;
 
@@ -17,7 +18,15 @@ Heading.propTypes = {
 const renderers = {
   paragraph: props => <Typography {...props} paragraph />,
   heading: Heading,
-  link: Link,
+  link: props => {
+    const url = new URL(props.href);
+
+    if (url.host === 'www.youtube.com') {
+      return <YoutubeVideo {...props} id={url.searchParams.get('v')} />;
+    }
+
+    return <Link {...props} />;
+  },
   linkReference: Link,
   table: Table,
   tableHead: TableHead,
