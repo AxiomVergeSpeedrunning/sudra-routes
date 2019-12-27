@@ -1,7 +1,5 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import urls from 'urls';

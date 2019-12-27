@@ -9,7 +9,7 @@ const Preview = ({ tutorial }) => (
   <BasePreview
     href={`${urls.tutorials.view}${tutorial.id}/`}
     title={tutorial.title}
-    subtitle={tutorial.author.username}
+    subtitle={`by ${tutorial.author.username}`}
   />
 );
 

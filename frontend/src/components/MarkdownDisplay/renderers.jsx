@@ -18,6 +18,7 @@ Heading.propTypes = {
 const renderers = {
   paragraph: props => <Typography {...props} paragraph />,
   heading: Heading,
+  /* eslint-disable react/destructuring-assignment, react/prop-types */
   link: props => {
     const url = new URL(props.href);
 
@@ -27,6 +28,7 @@ const renderers = {
 
     return <Link {...props} />;
   },
+  /* eslint-enable */
   linkReference: Link,
   table: Table,
   tableHead: TableHead,

@@ -30,7 +30,7 @@ const Create = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [createRoute] = useMutation(CREATE_ROUTE, {
-    onCompleted: () => history.push(urls.categories.view + `${id}/`),
+    onCompleted: () => history.push(`${urls.categories.view}${id}/`),
     onError: error => {
       // eslint-disable-next-line
       console.log(error);
