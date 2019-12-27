@@ -8,7 +8,7 @@ import gql from 'graphql-tag';
 import { useStaffRedirect } from 'hooks';
 import urls from 'urls';
 
-import EditPage from './EditPage';
+import EditPage from 'components/EditPage';
 
 const GET_TUTORIAL = gql`
   query Tutorial($id: ID!) {

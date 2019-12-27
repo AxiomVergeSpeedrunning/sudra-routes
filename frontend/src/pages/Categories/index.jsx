@@ -55,6 +55,7 @@ const Categories = () => {
       refetch();
     },
     onError: error => {
+      // eslint-disable-next-line
       console.log(error);
       enqueueSnackbar('Error submitting new category', { variant: 'error' });
     },

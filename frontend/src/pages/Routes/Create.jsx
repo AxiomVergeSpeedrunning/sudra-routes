@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { useSnackbar } from 'notistack';
 import { useMutation } from '@apollo/react-hooks';
@@ -7,13 +7,12 @@ import gql from 'graphql-tag';
 
 import { useStaffRedirect } from 'hooks';
 import urls from 'urls';
-
 import EditPage from 'components/EditPage';
 
-const CREATE_TUTORIAL = gql`
-  mutation CreateTutorial($input: CreateTutorialInput!) {
-    createTutorial(input: $input) {
-      tutorial {
+const CREATE_ROUTE = gql`
+  mutation CreateRoute($input: CreateRouteInput!) {
+    createRoute(input: $input) {
+      route {
         id
         title
         content
@@ -27,10 +26,11 @@ const Create = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
+  const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
 
-  const [createTutorial] = useMutation(CREATE_TUTORIAL, {
-    onCompleted: () => history.push(urls.tutorials.root),
+  const [createRoute] = useMutation(CREATE_ROUTE, {
+    onCompleted: () => history.push(urls.categories.view + `${id}/`),
     onError: error => {
       // eslint-disable-next-line
       console.log(error);
@@ -49,7 +49,7 @@ const Create = () => {
 
     try {
       setLoading(true);
-      createTutorial({ variables: { input: { title, content } } });
+      createRoute({ variables: { input: { category: id, title, content } } });
     } finally {
       setLoading(false);
     }

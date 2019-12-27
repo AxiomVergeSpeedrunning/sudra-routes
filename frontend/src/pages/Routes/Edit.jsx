@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { useSnackbar } from 'notistack';
-import { useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import { useStaffRedirect } from 'hooks';
@@ -10,27 +10,42 @@ import urls from 'urls';
 
 import EditPage from 'components/EditPage';
 
-const CREATE_TUTORIAL = gql`
-  mutation CreateTutorial($input: CreateTutorialInput!) {
-    createTutorial(input: $input) {
-      tutorial {
+const GET_ROUTE = gql`
+  query Route($id: ID!) {
+    route(id: $id) {
+      id
+      title
+      content
+    }
+  }
+`;
+
+const UPDATE_ROUTE = gql`
+  mutation updateRoute($id: ID!, $input: PatchRouteInput!) {
+    updateRoute(id: $id, input: $input) {
+      route {
         id
         title
         content
+
+        category {
+          id
+        }
       }
     }
   }
 `;
 
-const Create = () => {
-  const history = useHistory();
+const Edit = () => {
+  const { id } = useParams();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
 
-  const [createTutorial] = useMutation(CREATE_TUTORIAL, {
-    onCompleted: () => history.push(urls.tutorials.root),
+  const [updateRoute] = useMutation(UPDATE_ROUTE, {
+    onCompleted: d => history.push(`${urls.categories.view}${d.route.category.id}/`),
     onError: error => {
       // eslint-disable-next-line
       console.log(error);
@@ -39,7 +54,23 @@ const Create = () => {
     },
   });
 
+  const { data, loading: queryLoading } = useQuery(GET_ROUTE, { variables: { id: Number(id) } });
   const Redirect = useStaffRedirect();
+
+  useEffect(() => {
+    if (queryLoading) {
+      return;
+    }
+
+    const { route } = data;
+
+    setTitle(route.title);
+    setContent(route.content);
+  }, [data, queryLoading]);
+
+  if (queryLoading) {
+    return null;
+  }
 
   const onSubmit = () => {
     if (!title || !content) {
@@ -49,7 +80,7 @@ const Create = () => {
 
     try {
       setLoading(true);
-      createTutorial({ variables: { input: { title, content } } });
+      updateRoute({ variables: { id, input: { title, content } } });
     } finally {
       setLoading(false);
     }
@@ -72,4 +103,4 @@ const Create = () => {
   );
 };
 
-export default observer(Create);
+export default observer(Edit);

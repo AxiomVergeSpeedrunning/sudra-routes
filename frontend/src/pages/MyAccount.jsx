@@ -40,15 +40,27 @@ const MyAccount = () => {
         <Grid container direction="row" justify="space-between">
           <Grid item sm={5} xs={12}>
             <Typography variant="subtitle1" paragraph>
+              Your username
+            </Typography>
+
+            <TextField variant="outlined" value={userInfo.username} fullWidth />
+          </Grid>
+          <Grid item sm={5} xs={12}>
+            <Typography variant="subtitle1" paragraph>
               Your user token
             </Typography>
 
             <TextField variant="outlined" value={userInfo.token} fullWidth />
             <Spacer v={16} smUp />
           </Grid>
+        </Grid>
 
+        <Spacer v={16} />
+
+        <Grid container direction="row" justify="space-between">
           <Grid item sm={5} xs={12}>
             <Typography variant="subtitle1" paragraph>
+              {' '}
               Your tracker widget URL
             </Typography>
 
@@ -58,11 +70,7 @@ const MyAccount = () => {
               fullWidth
             />
           </Grid>
-        </Grid>
 
-        <Spacer v={16} />
-
-        <Grid container direction="row" justify="center">
           <Grid item sm={5} xs={12}>
             <Typography variant="subtitle1" paragraph>
               Your item tracker widget URL

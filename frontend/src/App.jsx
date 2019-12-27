@@ -25,6 +25,11 @@ import ViewTutorial from 'pages/Tutorials/View';
 import EditTutorial from 'pages/Tutorials/Edit';
 
 import Categories from 'pages/Categories';
+import ViewCategory from 'pages/Categories/View';
+
+import ViewRoute from 'pages/Routes/View';
+import CreateRoute from 'pages/Routes/Create';
+import EditRoute from 'pages/Routes/Edit';
 
 import GlobalContextProvider from 'components/GlobalContextProvider';
 import urls from './urls';
@@ -82,6 +87,11 @@ const App = () => (
                 <Route exact path={urls.account} component={MyAccount} />
 
                 <Route exact path={urls.categories.root} component={Categories} />
+                <Route exact path={`${urls.categories.view}:id/`} component={ViewCategory} />
+
+                <Route exact path={`${urls.routes.view}:id/`} component={ViewRoute} />
+                <Route exact path={`${urls.routes.create}:id/`} component={CreateRoute} />
+                <Route exact path={`${urls.routes.edit}:id/`} component={EditRoute} />
 
                 <Route exact path={urls.tutorials.root} component={Tutorials} />
                 <Route exact path={urls.tutorials.create} component={CreateTutorial} />

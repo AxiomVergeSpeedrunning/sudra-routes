@@ -1,16 +1,13 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 import urls from 'urls';
-
 import QueryViewer from 'components/QueryViewer';
 
-const GET_TUTORIAL = gql`
-  query Tutorial($id: ID!) {
-    tutorial(id: $id) {
+const GET_ROUTE = gql`
+  query Route($id: ID!) {
+    route(id: $id) {
       id
       title
       content
@@ -26,9 +23,9 @@ const GET_TUTORIAL = gql`
 
 const View = () => (
   <QueryViewer
-    query={GET_TUTORIAL}
-    extractInfo={d => d.tutorial}
-    getEditUrl={d => `${urls.tutorials.edit}${d.tutorial.id}/`}
+    query={GET_ROUTE}
+    extractInfo={d => d.route}
+    getEditUrl={d => `${urls.routes.edit}${d.route.id}/`}
   />
 );
 

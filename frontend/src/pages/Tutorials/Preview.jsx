@@ -1,25 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
-import Typography from '@material-ui/core/Typography';
 
-import ThemedWindow from 'components/ThemedWindow';
-import Spacer from 'components/Spacer';
-import Link from 'components/Link';
 import urls from 'urls';
+import BasePreview from 'components/Preview';
 
 const Preview = ({ tutorial }) => (
-  <ThemedWindow variant="purple">
-    <Link to={`${urls.tutorials.view}${tutorial.id}/`} color="secondary">
-      <Typography variant="h5">{tutorial.title}</Typography>
-    </Link>
-
-    <Spacer v={8} />
-
-    <Typography align="right" variant="subtitle2">
-      by {tutorial.author.username}
-    </Typography>
-  </ThemedWindow>
+  <BasePreview
+    href={`${urls.tutorials.view}${tutorial.id}/`}
+    title={tutorial.title}
+    subtitle={tutorial.author.username}
+  />
 );
 
 Preview.propTypes = {
