@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
+
+import Link from '@material-ui/core/Link';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -19,6 +21,7 @@ import GamepadIcon from '@material-ui/icons/Gamepad';
 import BookIcon from '@material-ui/icons/Book';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import NoteAddIcon from '@material-ui/icons/NoteAdd';
+import ForumIcon from '@material-ui/icons/Forum';
 
 import urls from 'urls';
 
@@ -54,6 +57,14 @@ const NavDrawer = ({ classes, ...props }) => {
               <ListItemText primary={text} />
             </ListItem>
           ))}
+
+          <ListItem button onClick={() => window.location.assign('https://discord.gg/mTRtcS8')}>
+            <ListItemIcon>
+              <ForumIcon />
+            </ListItemIcon>
+
+            <ListItemText primary="Discord" />
+          </ListItem>
         </List>
 
         <Divider />
