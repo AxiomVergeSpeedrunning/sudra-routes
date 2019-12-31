@@ -45,7 +45,7 @@ const Edit = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [updateRoute] = useMutation(UPDATE_ROUTE, {
-    onCompleted: d => history.push(`${urls.categories.view}${d.route.category.id}/`),
+    onCompleted: d => history.push(`${urls.routes.view}${id}/`),
     onError: error => {
       // eslint-disable-next-line
       console.log(error);
