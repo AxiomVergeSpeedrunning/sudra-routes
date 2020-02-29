@@ -57,7 +57,7 @@ def check(request):
 @api_view()
 def rtmp_check(request):
     try:
-        User.objects.get(username=request.query_params['name'], auth_token__key=request.query_params['token'])
+        User.objects.get(username=request.data['name'], auth_token__key=request.data['token'])
         return Response({})
     except User.DoesNotExist:
-        return Response({}, status=status.HTTP_403_FORBIDDEN)
+        return Response({}, status=status.HTTP_404_NOT_FOUND)
