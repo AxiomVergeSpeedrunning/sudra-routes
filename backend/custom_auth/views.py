@@ -57,7 +57,7 @@ def check(request):
 @api_view(['POST'])
 def rtmp_check(request):
     try:
-        User.objects.get(username=request.data['name'], auth_token__key=request.data['token'])
+        User.objects.get(username=request.data['name'], auth_token__key=request.data['token'], is_staff=True)
         return Response({})
     except Exception:
         return Response({}, status=status.HTTP_404_NOT_FOUND)
