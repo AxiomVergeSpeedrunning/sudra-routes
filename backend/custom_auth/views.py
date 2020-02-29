@@ -52,3 +52,12 @@ def check(request):
         })
 
     return Response({}, status=status.HTTP_403_FORBIDDEN)
+
+
+@api_view()
+def rtmp_check(request):
+    try:
+        User.objects.get(username=request.query_params['name'], auth_token__key=request.query_params['token'])
+        return Response({})
+    except User.DoesNotExist:
+        return Response({}, status=status.HTTP_403_FORBIDDEN)
