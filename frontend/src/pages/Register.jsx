@@ -74,7 +74,7 @@ const Register = () => {
           <Grid container direction="column">
             <TextField
               value={username}
-              onChange={e => setUsername(e.target.value)}
+              onChange={e => setUsername(e.target.value.replace(/\s/g, ''))}
               label="Username"
               placeholder="axiomvergelover1337"
               variant="outlined"
