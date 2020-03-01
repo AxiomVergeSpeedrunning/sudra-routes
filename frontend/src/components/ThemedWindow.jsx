@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
-    
+
     '&$avsr': {
       borderImage: `url(${AVSRSubBorder}) 2 round`,
       border: '2px solid transparent',
@@ -93,6 +93,7 @@ const ThemedWindow = ({ children, variant, slim, className: externClassName }) =
       [classes.pink]: variant === 'pink',
       [classes.slim]: slim,
       [classes.gdq]: search.has('gdq'),
+      [classes.avsr]: search.has('avsr'),
     },
     externClassName,
   );
