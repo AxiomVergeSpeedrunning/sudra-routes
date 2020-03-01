@@ -29,6 +29,12 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 12,
     backgroundColor: '#130612',
 
+    '&$gdq': {
+      borderImage: `url(${GDQSubBorder}) 2 round`,
+      border: '2px solid transparent',
+      backgroundColor: '#021111',
+    },
+
     '&$purple': {
       borderImageSource: `url(${PurpleBorder})`,
       backgroundColor: '#000000',
@@ -44,8 +50,6 @@ const useStyles = makeStyles(theme => ({
 
       '&$gdq': {
         borderImage: `url(${GDQSubBorder}) 2 round`,
-        border: '2px solid transparent',
-        backgroundColor: '#021111',
       },
     },
 
