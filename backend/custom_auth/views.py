@@ -94,8 +94,9 @@ def store_discord(request):
 
     try:
         res = requests.get('https://discordapp.com/api/users/@me', headers={'Authorization': f'Bearer {token}'})
-        request.user.custom_info.discord_user_id = res.json()['id']
-        request.user.custom_info.save()
+        custom_info = CustomUserInformation.objects.get(user=request.user)
+        custom_info.discord_user_id = res.json()['id']
+        custom_info.save()
 
         return Response({})
     except Exception as e:
