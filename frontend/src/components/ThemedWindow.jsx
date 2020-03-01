@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import classNames from 'classnames';
+import UrlSearchParams from '@ungap/url-search-params';
 
 import NormalBorder from '../assets/axiom-border.png';
 import PurpleBorder from '../assets/purple-border.png';
 import DeepRedBorder from '../assets/deep-red-border.png';
 import PinkBorder from '../assets/pink-border.png';
+
+import GDQBorder from '../assets/gamer-tags-border.png';
+import GDQSubBorder from '../assets/gdq-frame.png';
 
 const useStyles = makeStyles(theme => ({
   // Used to modify other classes
@@ -15,6 +20,7 @@ const useStyles = makeStyles(theme => ({
   deepRed: {},
   pink: {},
   slim: {},
+  gdq: {},
 
   root: {
     padding: theme.spacing(3),
@@ -26,10 +32,21 @@ const useStyles = makeStyles(theme => ({
     '&$purple': {
       borderImageSource: `url(${PurpleBorder})`,
       backgroundColor: '#000000',
+
+      '&$gdq': {
+        borderImage: `url(${GDQBorder}) 9 round`,
+        border: '9px solid transparent',
+      },
     },
 
     '&$deepRed': {
       borderImageSource: `url(${DeepRedBorder})`,
+
+      '&$gdq': {
+        borderImage: `url(${GDQSubBorder}) 2 round`,
+        border: '2px solid transparent',
+        backgroundColor: '#021111',
+      },
     },
 
     '&$pink': {
@@ -43,6 +60,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ThemedWindow = ({ children, variant, slim, className: externClassName }) => {
+  const location = useLocation();
+  const search = new UrlSearchParams(location.search);
+
   const classes = useStyles();
   const className = classNames(
     classes.root,
@@ -51,6 +71,7 @@ const ThemedWindow = ({ children, variant, slim, className: externClassName }) =
       [classes.deepRed]: variant === 'red',
       [classes.pink]: variant === 'pink',
       [classes.slim]: slim,
+      [classes.gdq]: search.has('gdq'),
     },
     externClassName,
   );

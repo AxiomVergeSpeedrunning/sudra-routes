@@ -42,7 +42,7 @@ const MyAccount = () => {
   }
 
   const goToDiscordAuth = () =>
-    window.location.assign('https://discordapp.com/api/oauth2/authorize?' + getDiscordAuthParams());
+    window.location.assign(`https://discordapp.com/api/oauth2/authorize?${getDiscordAuthParams()}`);
 
   return (
     <>
