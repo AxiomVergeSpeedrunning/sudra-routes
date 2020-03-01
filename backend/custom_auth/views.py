@@ -65,12 +65,13 @@ def rtmp_check(request):
 
     try:
         user = User.objects.get(username=request.data['name'], auth_token__key=request.data['token'])
+        custom_info = CustomUserInformation.objects.get(user=user)
 
-        if user.custom_info.discord_user_id is None:
+        if custom_info.discord_user_id is None:
             return failure
 
         response = requests.get(
-            f'https://discordapp.com/api/guilds/{settings.DISCORD_SERVER_ID}/members/{user.custom_info.discord_user_id}',
+            f'https://discordapp.com/api/guilds/{settings.DISCORD_SERVER_ID}/members/{custom_info.discord_user_id}',
             headers={
                 'Authorization': f'Bot {settings.DISCORD_BOT_TOKEN}'
             }
