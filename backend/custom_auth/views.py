@@ -70,7 +70,7 @@ def rtmp_check(request):
             return failure
 
         response = requests.get(
-            f'https://discordapp.com/api/guilds/{settings.DISCORD_SERVER_ID}/{user.custom_info.discord_user_id}',
+            f'https://discordapp.com/api/guilds/{settings.DISCORD_SERVER_ID}/members/{user.custom_info.discord_user_id}',
             headers={
                 'Authorization': f'Bot {settings.DISCORD_BOT_TOKEN}'
             }
