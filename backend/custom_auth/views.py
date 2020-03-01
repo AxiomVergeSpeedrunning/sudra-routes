@@ -64,7 +64,8 @@ def rtmp_check(request):
     failure = Response({}, status=status.HTTP_404_NOT_FOUND)
 
     try:
-        user = User.objects.get(username=request.data['name'], auth_token__key=request.data['token'])
+        user = User.objects.get(username=request.data['name'], auth_token__key=request.data['token'], is_staff=True)
+        return Response({})
         custom_info = CustomUserInformation.objects.get(user=user)
 
         response = requests.get(
