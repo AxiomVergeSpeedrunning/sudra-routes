@@ -95,7 +95,7 @@ def store_discord(request):
 
     try:
         res = requests.get('https://discordapp.com/api/users/@me', headers={'Authorization': f'Bearer {token}'})
-        custom_info = CustomUserInformation.objects.get(user=request.user)
+        custom_info, _ = CustomUserInformation.objects.get_or_create(user=request.user)
         custom_info.discord_user_id = res.json()['id']
         custom_info.save()
 
