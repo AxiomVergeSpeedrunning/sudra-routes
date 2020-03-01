@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import environ
+from dotenv import load_dotenv
+
+load_dotenv()
 
 env = environ.Env()
 
@@ -195,3 +198,7 @@ CORS_ORIGIN_WHITELIST = [
 CORS_URLS_REGEX = r'^/api/.*$'
 
 RATELIMIT_ENABLE = PRODUCTION
+
+DISCORD_SERVER_ID = env('SERVER_ID')
+DISCORD_BOT_TOKEN = env('TOKEN')
+DISCORD_ROLE_ID = env('ROLE_ID')

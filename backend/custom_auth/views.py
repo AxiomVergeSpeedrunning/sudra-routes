@@ -7,6 +7,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 from django.db.models import Q
 
+from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
@@ -60,11 +61,28 @@ def check(request):
 
 @api_view(['POST'])
 def rtmp_check(request):
+    failure = Response({}, status=status.HTTP_404_NOT_FOUND)
+
     try:
-        User.objects.get(username=request.data['name'], auth_token__key=request.data['token'], is_staff=True)
+        user = User.objects.get(username=request.data['name'], auth_token__key=request.data['token'])
+
+        if user.custom_info.discord_user_id is None:
+            return failure
+
+        response = requests.get(
+            f'https://discordapp.com/api/guilds/{settings.DISCORD_SERVER_ID}/{user.custom_info.discord_user_id}',
+            headers={
+                'Authorization': f'Bot {settings.DISCORD_BOT_TOKEN}'
+            }
+        )
+
+        # Check that the user has the runner role
+        if settings.DISCORD_ROLE_ID not in response.json()['roles']:
+            return failure
+
         return Response({})
     except Exception:
-        return Response({}, status=status.HTTP_404_NOT_FOUND)
+        return failure
 
 
 @ratelimit(key='ip', rate='5/hr', block=True)
