@@ -10,12 +10,8 @@
     "domain": "api.sudra-routes.com",
     "vpc_config": {
       "SubnetIds": [
-        "subnet-ce37bd94",
-        "subnet-2e6d6f12",
-        "subnet-42ce2e26",
-        "subnet-37b2e77f",
-        "subnet-56aac35a",
-        "subnet-691b8945"
+        "subnet-096f15acf894952cb",
+        "subnet-04f27240f400321fc"
       ],
       "SecurityGroupIds": ["sg-b7edbbc6"]
     },
