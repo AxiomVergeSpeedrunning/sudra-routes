@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import { useHistory } from 'react-router-dom';
 
-import Link from '@material-ui/core/Link';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

@@ -44,6 +44,10 @@ class API {
   static async getTrackerInfo({ uid }) {
     return this.api.get(`get/${uid}/`, { baseURL: '/tracker' });
   }
+
+  static async discordAuth({ token }) {
+    return this.api.post('auth/store-discord/', { token });
+  }
 }
 
 API.initAxios();

@@ -31,6 +31,8 @@ import ViewRoute from 'pages/Routes/View';
 import CreateRoute from 'pages/Routes/Create';
 import EditRoute from 'pages/Routes/Edit';
 
+import DiscordAuth from 'pages/DiscordAuth';
+
 import GlobalContextProvider from 'components/GlobalContextProvider';
 import urls from './urls';
 
@@ -100,6 +102,8 @@ const App = () => (
 
                 <Route exact path="/widget/:uid/" component={TrackerWidget} />
                 <Route exact path="/items/:uid/" component={ItemWidget} />
+
+                <Route exact path={urls.discordAuth} component={DiscordAuth} />
               </Switch>
             </Nav>
           </GlobalContextProvider>

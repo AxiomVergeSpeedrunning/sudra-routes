@@ -6,4 +6,5 @@ urlpatterns = [
     path('register/', views.register),
     path('check/', views.check),
     path('rtmp-check/', views.rtmp_check),
+    path('store-discord/', views.store_discord),
 ]

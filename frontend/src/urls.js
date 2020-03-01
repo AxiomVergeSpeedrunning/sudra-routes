@@ -16,6 +16,7 @@ const urls = {
   login: '/login/',
   register: '/register/',
   account: '/account/',
+  discordAuth: '/discord-auth/',
 };
 
 export default urls;

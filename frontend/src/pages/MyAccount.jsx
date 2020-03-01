@@ -7,6 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Button from '@material-ui/core/Button';
+import UrlSearchParams from '@ungap/url-search-params';
 
 import { useGlobalContext } from 'hooks';
 import urls from 'urls';
@@ -16,6 +18,17 @@ import Spacer from 'components/Spacer';
 import disconnected from 'assets/screenshots/disconnected.png';
 import connected from 'assets/screenshots/connected.png';
 import tokenInput from 'assets/screenshots/token-input.png';
+
+const getDiscordAuthParams = () => {
+  const params = new UrlSearchParams();
+
+  params.append('redirect_uri', window.location.origin + urls.discordAuth);
+  params.append('scope', 'identify');
+  params.append('response_type', 'token');
+  params.append('client_id', '683532608004423698');
+
+  return params.toString();
+};
 
 const MyAccount = () => {
   const { isAuthenticated, loading, userInfo } = useGlobalContext();
@@ -27,6 +40,9 @@ const MyAccount = () => {
   if (!isAuthenticated) {
     return <Redirect to={urls.login} />;
   }
+
+  const goToDiscordAuth = () =>
+    window.location.assign('https://discordapp.com/api/oauth2/authorize?' + getDiscordAuthParams());
 
   return (
     <>
@@ -82,6 +98,14 @@ const MyAccount = () => {
               fullWidth
             />
           </Grid>
+        </Grid>
+
+        <Spacer v={16} />
+
+        <Grid container direction="row" justify="center">
+          <Button variant="contained" color="primary" onClick={goToDiscordAuth}>
+            Link your Discord
+          </Button>
         </Grid>
       </ThemedWindow>
 

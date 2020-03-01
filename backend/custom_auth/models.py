@@ -1,3 +1,7 @@
-# from django.db import models
+from django.contrib.auth.models import User
+from django.db import models
 
-# Create your models here.
+
+class CustomUserInformation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='custom_info')
+    discord_user_id = models.CharField(max_length=256, null=True, blank=True)

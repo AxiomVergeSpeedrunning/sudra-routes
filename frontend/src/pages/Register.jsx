@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Cookies from 'js-cookie';
-import { validate as isemail } from 'isemail';
 
 import Spacer from 'components/Spacer';
 import ThemedWindow from 'components/ThemedWindow';
@@ -24,6 +23,13 @@ const useStyles = makeStyles({
     left: 0,
   },
 });
+
+/* eslint-disable */
+const isemail = email =>
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    email,
+  );
+/* eslint-enable */
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -44,7 +50,7 @@ const Register = () => {
     e.preventDefault();
     logout();
 
-    if (password !== passwordConfirmation || !isemail(email)) {
+    if (password !== passwordConfirmation) {
       return;
     }
 

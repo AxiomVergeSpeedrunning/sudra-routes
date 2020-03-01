@@ -1,3 +1,5 @@
+import requests
+
 from ratelimit.decorators import ratelimit
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -8,6 +10,7 @@ from django.db.models import Q
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
+from custom_auth.models import CustomUserInformation
 from backend.serializers import UserSerializer
 
 
@@ -39,6 +42,7 @@ def register(request):
 
     user = User.objects.create_user(username, email=email, password=password)
     token = Token.objects.create(user=user)
+    CustomUserInformation.objects.create(user=user)
 
     return Response({'token': token.key, 'user_info': UserSerializer(user).data})
 
@@ -60,4 +64,22 @@ def rtmp_check(request):
         User.objects.get(username=request.data['name'], auth_token__key=request.data['token'], is_staff=True)
         return Response({})
     except Exception:
+        return Response({}, status=status.HTTP_404_NOT_FOUND)
+
+
+@ratelimit(key='ip', rate='5/hr', block=True)
+@api_view(['POST'])
+def store_discord(request):
+    if not request.user.is_authenticated:
+        return Response({}, status=status.HTTP_403_FORBIDDEN)
+
+    token = request.data['token']
+
+    try:
+        res = requests.get('https://discordapp.com/api/users/@me', headers={'Authorization': f'Bearer {token}'})
+        request.user.custom_info.discord_user_id = res.json()['id']
+
+        return Response({})
+    except Exception as e:
+        print(e)
         return Response({}, status=status.HTTP_404_NOT_FOUND)
