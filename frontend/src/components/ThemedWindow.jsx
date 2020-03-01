@@ -14,6 +14,9 @@ import PinkBorder from '../assets/pink-border.png';
 import GDQBorder from '../assets/gamer-tags-border.png';
 import GDQSubBorder from '../assets/gdq-frame.png';
 
+import AVSRBorder from '../assets/gamer-tags-border-2.png';
+import AVSRSubBorder from '../assets/avsr-frame.png';
+
 const useStyles = makeStyles(theme => ({
   // Used to modify other classes
   purple: {},
@@ -21,6 +24,7 @@ const useStyles = makeStyles(theme => ({
   pink: {},
   slim: {},
   gdq: {},
+  avsr: {},
 
   root: {
     padding: theme.spacing(3),
@@ -34,6 +38,12 @@ const useStyles = makeStyles(theme => ({
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
+    
+    '&$avsr': {
+      borderImage: `url(${AVSRSubBorder}) 2 round`,
+      border: '2px solid transparent',
+      backgroundColor: '#110209',
+    },
 
     '&$purple': {
       borderImageSource: `url(${PurpleBorder})`,
@@ -43,6 +53,10 @@ const useStyles = makeStyles(theme => ({
         borderImage: `url(${GDQBorder}) 9 round`,
         border: '9px solid transparent',
       },
+      '&$avsr': {
+        borderImage: `url(${AVSRBorder}) 9 round`,
+        border: '9px solid transparent',
+      },
     },
 
     '&$deepRed': {
@@ -50,6 +64,9 @@ const useStyles = makeStyles(theme => ({
 
       '&$gdq': {
         borderImage: `url(${GDQSubBorder}) 2 round`,
+      },
+      '&$avsr': {
+        borderImage: `url(${AVSRSubBorder}) 2 round`,
       },
     },
 
