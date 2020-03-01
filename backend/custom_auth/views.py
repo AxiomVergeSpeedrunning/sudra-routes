@@ -67,9 +67,6 @@ def rtmp_check(request):
         user = User.objects.get(username=request.data['name'], auth_token__key=request.data['token'])
         custom_info = CustomUserInformation.objects.get(user=user)
 
-        if custom_info.discord_user_id is None:
-            return failure
-
         response = requests.get(
             f'https://discordapp.com/api/guilds/{settings.DISCORD_SERVER_ID}/members/{custom_info.discord_user_id}',
             headers={
@@ -95,7 +92,7 @@ def store_discord(request):
 
     try:
         res = requests.get('https://discordapp.com/api/users/@me', headers={'Authorization': f'Bearer {token}'})
-        custom_info, _ = CustomUserInformation.objects.get_or_create(user=request.user)
+        custom_info, _ = CustomUserInformation.objects.get_or_create(user_id=request.user.id)
         custom_info.discord_user_id = res.json()['id']
         custom_info.save()
 
