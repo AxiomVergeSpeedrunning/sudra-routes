@@ -14,6 +14,12 @@ import PinkBorder from '../assets/pink-border.png';
 import GDQBorder from '../assets/gamer-tags-border.png';
 import GDQSubBorder from '../assets/gdq-frame.png';
 
+import GDQBorder2 from '../assets/gamer-tags-border2png';
+import GDQSubBorder2 from '../assets/gdq-frame2.png';
+
+import GDQBorder3 from '../assets/gamer-tags-border3.png';
+import GDQSubBorder3 from '../assets/gdq-frame3.png';
+
 import AVSRBorder from '../assets/gamer-tags-border-2.png';
 import AVSRSubBorder from '../assets/avsr-frame.png';
 
@@ -24,6 +30,8 @@ const useStyles = makeStyles(theme => ({
   pink: {},
   slim: {},
   gdq: {},
+  gdq2: {},
+  gdq3: {},
   avsr: {},
 
   root: {
@@ -35,6 +43,18 @@ const useStyles = makeStyles(theme => ({
 
     '&$gdq': {
       borderImage: `url(${GDQSubBorder}) 2 round`,
+      border: '2px solid transparent',
+      backgroundColor: '#021111',
+    },
+    
+    '&$gdq2': {
+      borderImage: `url(${GDQSubBorder2}) 2 round`,
+      border: '2px solid transparent',
+      backgroundColor: '#021111',
+    },
+    
+    '&$gdq3': {
+      borderImage: `url(${GDQSubBorder3}) 2 round`,
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
@@ -53,6 +73,14 @@ const useStyles = makeStyles(theme => ({
         borderImage: `url(${GDQBorder}) 9 round`,
         border: '9px solid transparent',
       },
+      '&$gdq2': {
+        borderImage: `url(${GDQBorder2}) 9 round`,
+        border: '9px solid transparent',
+      },
+      '&$gdq3': {
+        borderImage: `url(${GDQBorder3}) 9 round`,
+        border: '9px solid transparent',
+      },
       '&$avsr': {
         borderImage: `url(${AVSRBorder}) 9 round`,
         border: '9px solid transparent',
@@ -64,6 +92,12 @@ const useStyles = makeStyles(theme => ({
 
       '&$gdq': {
         borderImage: `url(${GDQSubBorder}) 2 round`,
+      },
+      '&$gdq2': {
+        borderImage: `url(${GDQSubBorder2}) 2 round`,
+      },
+      '&$gdq3': {
+        borderImage: `url(${GDQSubBorder3}) 2 round`,
       },
       '&$avsr': {
         borderImage: `url(${AVSRSubBorder}) 2 round`,
@@ -93,6 +127,8 @@ const ThemedWindow = ({ children, variant, slim, className: externClassName }) =
       [classes.pink]: variant === 'pink',
       [classes.slim]: slim,
       [classes.gdq]: search.has('gdq'),
+      [classes.gdq2]: search.has('gdq2'),
+      [classes.gdq3]: search.has('gdq3'),
       [classes.avsr]: search.has('avsr'),
     },
     externClassName,
