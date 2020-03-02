@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'custom_auth',
     'tracker',
     'routes',
+    'races',
 ]
 
 MIDDLEWARE = [
