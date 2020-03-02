@@ -83,6 +83,7 @@ def rtmp_check(request):
         return failure
 
 
+@ratelimit(key='ip', rate='5/hr', block=True)
 @api_view(['POST'])
 def store_discord(request):
     if not request.user.is_authenticated:
