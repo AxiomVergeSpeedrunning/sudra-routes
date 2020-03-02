@@ -64,13 +64,6 @@ const AdminIndex = () => {
           <Typography>{extra_information}</Typography>
         </div>
       ))}
-      
-      {data.runners.map((r, idx) => (
-        <div key={idx}>
-          <Typography>{name}</Typography>
-          <Typography>{end_time}</Typography>
-        </div>
-      ))}
 
       <FixedFab color="primary" onClick={newRace}>
         <AddIcon />
