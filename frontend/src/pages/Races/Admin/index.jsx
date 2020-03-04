@@ -56,17 +56,26 @@ const AdminIndex = () => {
 
   return (
     <>
-      {data.races.map((r, idx) => (
-        <div key={idx}>
-          <Typography>{started}</Typography>
-          <Typography>{commentator_name}</Typography>
-          <Typography>{game_name}</Typography>
-          <Typography>{extra_information}</Typography>
-        </div>
-      ))}
-
+      {
+        data.races.map((r, idx) => (
+          <div key={idx}>
+            <Typography>{id}</Typography>
+            <Typography>{started}</Typography>
+            <Typography>{commentator_name}</Typography>
+            <Typography>{game_name}</Typography>
+            <Typography>{extra_information}</Typography>
+          </div>
+        ),
+        data.runners.map((r, idx) => (
+          <div key={idx}>
+              <Typography>{id}</Typography>
+              <Typography>{name}</Typography>
+              <Typography>{end_time}</Typography>
+          </div>
+        )))
+      }
       <FixedFab color="primary" onClick={newRace}>
-        <AddIcon />
+      <AddIcon />
       </FixedFab>
     </>
   );
