@@ -8,4 +8,6 @@ https://heuristic-elion-193669.netlify.com/* https://sudra-routes.com/:splat 301
 
 /downloads/* https://downloads.sudra-routes.com/:splat 200
 
+/admin/* https://api.sudra-routes.com/admin/:splat 200
+
 /*    /index.html   200
