@@ -1,3 +1,6 @@
-# from django.contrib import admin
+from django.contrib import admin
+from .models import TrackerInformation, ItemTracker
 
-# Register your models here.
+
+admin.site.register(TrackerInformation)
+admin.register(ItemTracker)
