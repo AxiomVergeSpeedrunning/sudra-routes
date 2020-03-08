@@ -18,6 +18,9 @@ const server = new ParcelProxyServer({
     '/admin': {
       target: 'http://backend:3001',
     },
+    '/backend-static': {
+      target: 'http://backend:3001',
+    },
   },
 });
 
