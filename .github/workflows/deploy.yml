@@ -21,7 +21,7 @@ jobs:
         run: source venv/bin/activate && pip install -r requirements.txt
         working-directory: backend
       - name: Collect static assets
-        run: docker-compose run --rm backend ./manage.py collectstatic
+        run: source venv/bin/activate && ./manage.py collectstatic
         working-directory: backend
       - name: Deploy the backend
         run: ./release.sh

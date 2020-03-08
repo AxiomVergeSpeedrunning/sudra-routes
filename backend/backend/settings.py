@@ -200,6 +200,6 @@ CORS_URLS_REGEX = r'^/api/.*$'
 
 RATELIMIT_ENABLE = PRODUCTION
 
-DISCORD_SERVER_ID = env.str('SERVER_ID')
-DISCORD_BOT_TOKEN = env.str('TOKEN')
-DISCORD_ROLE_ID = env.str('ROLE_ID')
+DISCORD_SERVER_ID = env.str('SERVER_ID', default='')
+DISCORD_BOT_TOKEN = env.str('TOKEN', default='')
+DISCORD_ROLE_ID = env.str('ROLE_ID', default='')
