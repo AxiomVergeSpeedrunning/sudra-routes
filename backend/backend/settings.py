@@ -203,3 +203,9 @@ RATELIMIT_ENABLE = PRODUCTION
 DISCORD_SERVER_ID = env.str('SERVER_ID', default='')
 DISCORD_BOT_TOKEN = env.str('TOKEN', default='')
 DISCORD_ROLE_ID = env.str('ROLE_ID', default='')
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID', default='')
+AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY', default='')

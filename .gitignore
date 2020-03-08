@@ -230,4 +230,3 @@ dmypy.json
 
 .tern-port
 .env
-backend/static
