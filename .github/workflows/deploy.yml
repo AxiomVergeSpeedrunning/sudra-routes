@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: source venv/bin/activate && pip install -r requirements.txt
         working-directory: backend
+      - name: Collect static assets
+        run: source venv/bin/activate && ./manage.py collectstatic
+        working-directory: backend
       - name: Deploy the backend
         run: ./release.sh
         env:
