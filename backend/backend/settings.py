@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'custom_auth',
     'tracker',
     'routes',
+    'races',
 ]
 
 MIDDLEWARE = [
@@ -204,10 +205,11 @@ DISCORD_SERVER_ID = env.str('SERVER_ID', default='')
 DISCORD_BOT_TOKEN = env.str('TOKEN', default='')
 DISCORD_ROLE_ID = env.str('ROLE_ID', default='')
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+if PRODUCTION:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID', default='')
-AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY', default='')
-AWS_STORAGE_BUCKET_NAME = 'com.sudra-routes.backend-static'
-AWS_AUTO_CREATE_BUCKET = True
+    AWS_ACCESS_KEY_ID = env.str('AWS_ACCESS_KEY_ID', default='')
+    AWS_SECRET_ACCESS_KEY = env.str('AWS_SECRET_ACCESS_KEY', default='')
+    AWS_STORAGE_BUCKET_NAME = 'com.sudra-routes.backend-static'
+    AWS_AUTO_CREATE_BUCKET = True
