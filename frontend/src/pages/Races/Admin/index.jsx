@@ -1,172 +1,152 @@
+  
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/react-hooks';
+import { observer } from 'mobx-react';
+
+import gql from 'graphql-tag';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import ThemedWindow from 'components/ThemedWindow';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitch } from '@fortawesome/free-solid-svg-icons'
+
+import urls from 'urls';
+
+import useGlobalContext from 'hooks/useGlobalContext';
+
 import classNames from 'classnames';
-import UrlSearchParams from '@ungap/url-search-params';
-
-import NormalBorder from '../assets/axiom-border.png';
-import PurpleBorder from '../assets/purple-border.png';
-import DeepRedBorder from '../assets/deep-red-border.png';
-import PinkBorder from '../assets/pink-border.png';
-
-import GDQBorder from '../assets/gamer-tags-border.png';
-import GDQSubBorder from '../assets/gdq-frame.png';
-
-import GDQBorder2 from '../assets/gamer-tags-border-3.png';
-import GDQSubBorder2 from '../assets/gdq-frame2.png';
-
-import GDQBorder3 from '../assets/gamer-tags-border-4.png';
-import GDQSubBorder3 from '../assets/gdq-frame3.png';
-
-import AVSRBorder from '../assets/gamer-tags-border-2.png';
-import AVSRSubBorder from '../assets/avsr-frame.png';
 
 const useStyles = makeStyles({
   gameWindow: {
+    position: 'absolute',
+	  top: 0,
     backgroundColor: 'none',
+    width: 'calc(960px - 4px)',
+	  height: 'calc(540px - 4px)',
+  },
+  player1: {
+    left: 0,
+  },
+  player2: {
+    right: 0,
+  },
+  userBox: {
+    position: 'absolute',
+    top: 'calc(1080px / 2)',
+    width: 'calc(960px - 18px)',
+    height: 30,
+    textAlign: 'center',
+  },
+  qrCode: {
+    position: 'absolute',
+    top: 'calc(100% / 2)',
+    width: 'calc(150px - 4px)',
+	  height: 'calc(150px - 4px)',
+  },
+  center: {
+    left: 'calc(100% / 2 - 250px)',
+  },
+  gameName: {
+    position: 'absolute',
+    top: 'calc(1080px / 2 + 47px)',
+    background: 'black',
+    width: 'calc(500px - 4px)',
+    height: 50,
+    textAlign: 'center',
+  },
+  gameCategory: {
+    position: 'absolute',
+	  top: 'calc(100% / 2 + 101px)',
+    width: 'calc(500px - 4px)',
+    height: 27,
+    textAlign: 'center',
+  },
+  timer: {
+    position: 'absolute',
+    top: 'calc(100% / 2 + 138px)',
+    width: 'calc(500px - 18px)',
+    height: 50,
+    textAlign: 'center',
+  },
+  extraInformation: {
+    position: 'absolute',
+    top: 'calc(100% / 2 + 204px)',
+    width: 'calc(500px - 4px)',
+    height: 20,
+    textAlign: 'center',
+  },
+  timeBox: {
+    position: 'absolute',
+    top: 'calc(100% / 2 + 81px)',
+    width: 300,
+    height: 50,
+    opacity: 0,
+    textAlign: 'center',
+  },
+  p1time: {
+    left: 150,
+  },
+  p2time: {
+    right: 150,
   },
 });
 
-const useStyles = makeStyles(theme => ({
-  // Used to modify other classes
-  purple: {},
-  deepRed: {},
-  pink: {},
-  slim: {},
-  gdq: {},
-  gdq2: {},
-  gdq3: {},
-  avsr: {},
+const GET_Race = gql`
+  query Race($id: ID!) {
+    race(id: $id) {
+      id
+      startTime
+      gameName
+      commentatorName
+      category
+      extraInformation
 
-  root: {
-    padding: theme.spacing(3),
-    border: '10px solid transparent',
-    borderImage: `url(${NormalBorder}) 10 round`,
-    borderRadius: 12,
-    backgroundColor: '#130612',
+      runners {
+        id
+        name
+        endTime
+      }
+    }
+  }
+`;
 
-    '&$gdq': {
-      borderImage: `url(${GDQSubBorder}) 2 round`,
-      border: '2px solid transparent',
-      backgroundColor: '#021111',
-    },
 
-    '&$gdq2': {
-      borderImage: `url(${GDQSubBorder2}) 2 round`,
-      border: '2px solid transparent',
-      backgroundColor: '#021111',
-    },
+const View = () => {
+  const store = useGlobalContext();
+  const { id } = useParams();
+  const { loading, data } = useQuery(GET_Race, { variables: { id: Number(id) } });
 
-    '&$gdq3': {
-      borderImage: `url(${GDQSubBorder3}) 2 round`,
-      border: '2px solid transparent',
-      backgroundColor: '#021111',
-    },
+  useEffect(() => {
+    store.useNav = false;
 
-    '&$avsr': {
-      borderImage: `url(${AVSRSubBorder}) 2 round`,
-      border: '2px solid transparent',
-      backgroundColor: '#110209',
-    },
+    return () => {
+      store.useNav = true;
+    };
+  });
 
-    '&$purple': {
-      borderImageSource: `url(${PurpleBorder})`,
-      backgroundColor: '#000000',
-
-      '&$gdq': {
-        borderImage: `url(${GDQBorder}) 9 round`,
-        border: '9px solid transparent',
-      },
-      '&$gdq2': {
-        borderImage: `url(${GDQBorder2}) 9 round`,
-        border: '9px solid transparent',
-      },
-      '&$gdq3': {
-        borderImage: `url(${GDQBorder3}) 9 round`,
-        border: '9px solid transparent',
-      },
-      '&$avsr': {
-        borderImage: `url(${AVSRBorder}) 9 round`,
-        border: '9px solid transparent',
-      },
-    },
-
-    '&$deepRed': {
-      borderImageSource: `url(${DeepRedBorder})`,
-
-      '&$gdq': {
-        borderImage: `url(${GDQSubBorder}) 2 round`,
-      },
-      '&$gdq2': {
-        borderImage: `url(${GDQSubBorder2}) 2 round`,
-      },
-      '&$gdq3': {
-        borderImage: `url(${GDQSubBorder3}) 2 round`,
-      },
-      '&$avsr': {
-        borderImage: `url(${AVSRSubBorder}) 2 round`,
-      },
-    },
-
-    '&$pink': {
-      borderImageSource: `url(${PinkBorder})`,
-    },
-
-    '&$slim': {
-      padding: 4,
-    },
-  },
-}));
-
-const ThemedWindow = ({
-  children,
-  variant,
-  subVariant,
-  slim,
-  className: externClassName,
-  ...props
-}) => {
-  const location = useLocation();
-  const search = new UrlSearchParams(location.search);
-
-  const classes = useStyles();
-  const className = classNames(
-    classes.root,
-    {
-      [classes.purple]: variant === 'purple',
-      [classes.deepRed]: variant === 'red',
-      [classes.pink]: variant === 'pink',
-      [classes.slim]: slim,
-      [classes.gdq]: search.has('gdq') || subVariant === 'gdq',
-      [classes.gdq2]: search.has('gdq2') || subVariant === 'gdq2',
-      [classes.gdq3]: search.has('gdq3') || subVariant === 'gdq3',
-      [classes.avsr]: search.has('avsr') || subVariant === 'avsr',
-    },
-    externClassName,
-  );
+  if (loading) {
+    return null;
+  }
 
   return (
-    <Paper className={className} {...props}>
-      {children}
-    </Paper>
+    <>
+      <ThemedWindow className={classNames(classes.gameWindow, classes.player1)} variant="purple" subVariant="avsr"></ThemedWindow>
+      <ThemedWindow className={classNames(classes.gameWindow, classes.player2)} variant="purple" subVariant="avsr"></ThemedWindow>
+      <ThemedWindow className={classNames(classes.userBox, classes.player1)} variant="red" subVariant="avsr"><FontAwesomeIcon icon={faTwitch}/>{data.race.runners[0].name}</ThemedWindow>
+      <QRCode className={classNames(classes.qrCode, classes.player1)}></QRCode>
+      <ThemedWindow className={classNames(classes.userBox, classes.player2)} variant="red" subVariant="avsr"><FontAwesomeIcon icon={faTwitch}/>{data.race.runners[1].name}</ThemedWindow>
+      <QRCode className={classNames(classes.qrCode, classes.player2)}></QRCode>
+      <ThemedWindow className={classNames(classes.gameName, classes.center)} variant="purple" subVariant="avsr">{data.race.gameName}</ThemedWindow>
+      <ThemedWindow className={classNames(classes.gameCategory, classes.center)} variant="purple" subVariant="avsr">{data.race.category}</ThemedWindow>
+      <ThemedWindow className={classNames(classes.timer, classes.center)} variant="red" subVariant="avsr">{data.race.startTime}</ThemedWindow>
+      <ThemedWindow className={classNames(classes.extraInformation, classes.center)} variant="purple" subVariant="avsr">{data.race.extraInformation}</ThemedWindow>
+      <ThemedWindow className={classNames(classes.timeBox, classes.p1time)} variant="red" subVariant="avsr">{data.race.runners[0].endTime}</ThemedWindow>
+      <ThemedWindow className={classNames(classes.timeBox, classes.p2time)} variant="red" subVariant="avsr">{data.race.runners[1].endTime}</ThemedWindow>
+    </>
   );
 };
 
-ThemedWindow.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  variant: PropTypes.oneOf(['default', 'red', 'purple', 'pink']),
-  subVariant: PropTypes.oneOf(['gdq', 'gdq2', 'gdq3', 'avsr']),
-  slim: PropTypes.bool,
-};
+  
 
-ThemedWindow.defaultProps = {
-  className: '',
-  variant: 'default',
-  subVariant: '',
-  slim: false,
-};
-
-export default ThemedWindow;
+export default observer(View);
