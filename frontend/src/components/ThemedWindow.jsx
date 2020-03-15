@@ -23,6 +23,12 @@ import GDQSubBorder3 from '../assets/gdq-frame3.png';
 import AVSRBorder from '../assets/gamer-tags-border-2.png';
 import AVSRSubBorder from '../assets/avsr-frame.png';
 
+const useStyles = makeStyles({
+  gameWindow: {
+    backgroundColor: 'none',
+  },
+});
+
 const useStyles = makeStyles(theme => ({
   // Used to modify other classes
   purple: {},
@@ -114,7 +120,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ThemedWindow = ({ children, variant, slim, className: externClassName }) => {
+const ThemedWindow = ({
+  children,
+  variant,
+  subVariant,
+  slim,
+  className: externClassName,
+  ...props
+}) => {
   const location = useLocation();
   const search = new UrlSearchParams(location.search);
 
@@ -126,20 +139,34 @@ const ThemedWindow = ({ children, variant, slim, className: externClassName }) =
       [classes.deepRed]: variant === 'red',
       [classes.pink]: variant === 'pink',
       [classes.slim]: slim,
-      [classes.gdq]: search.has('gdq') || variant === 'gdq',
-      [classes.gdq2]: search.has('gdq2') || variant === 'gdq2',
-      [classes.gdq3]: search.has('gdq3') || variant === 'gdq3',
-      [classes.avsr]: search.has('avsr') || variant === 'avsr',
+      [classes.gdq]: search.has('gdq') || subVariant === 'gdq',
+      [classes.gdq2]: search.has('gdq2') || subVariant === 'gdq2',
+      [classes.gdq3]: search.has('gdq3') || subVariant === 'gdq3',
+      [classes.avsr]: search.has('avsr') || subVariant === 'avsr',
     },
     externClassName,
   );
 
-  return <Paper className={className}>{children}</Paper>;
+  return (
+    <Paper className={className} {...props}>
+      {children}
+    </Paper>
+  );
 };
 
 ThemedWindow.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  variant: PropTypes.oneOf(['default', 'red', 'purple', 'pink', 'gdq', 'gdq2', 'gdq3', 'avsr']),
+  variant: PropTypes.oneOf(['default', 'red', 'purple', 'pink']),
+  subVariant: PropTypes.oneOf(['gdq', 'gdq2', 'gdq3', 'avsr']),
   slim: PropTypes.bool,
 };
+
+ThemedWindow.defaultProps = {
+  className: '',
+  variant: 'default',
+  subVariant: '',
+  slim: false,
+};
+
+export default ThemedWindow;
