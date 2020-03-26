@@ -35,7 +35,7 @@ const CollectableEntry = ({ name, number, total }) => {
   const classes = useStyles();
 
   const labelClass = classNames(classes.label, {
-    [classes.complete]: number === total,
+    [classes.complete]: number >= total,
   });
 
   return (
