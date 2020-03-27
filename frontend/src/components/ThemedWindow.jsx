@@ -46,13 +46,13 @@ const useStyles = makeStyles(theme => ({
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
-    
+
     '&$gdq2': {
       borderImage: `url(${GDQSubBorder2}) 2 round`,
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
-    
+
     '&$gdq3': {
       borderImage: `url(${GDQSubBorder3}) 2 round`,
       border: '2px solid transparent',
