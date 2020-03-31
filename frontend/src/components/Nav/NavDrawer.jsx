@@ -57,7 +57,7 @@ const NavDrawer = ({ classes, ...props }) => {
             </ListItem>
           ))}
 
-          <ListItem button onClick={() => window.location.assign('https://discord.gg/mTRtcS8')}>
+          <ListItem button onClick={() => window.location.assign('https://discord.gg/hngJJgz')}>
             <ListItemIcon>
               <ForumIcon />
             </ListItemIcon>
