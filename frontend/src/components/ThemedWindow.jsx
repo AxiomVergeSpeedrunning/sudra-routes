@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
         border: '9px solid transparent',
       },
       '&$noreset': {
-        borderImage: `none 9 round`,
+        borderImage: `none`,
         border: '9px solid transparent',
         backgroundColor: 'transparent',
       },
