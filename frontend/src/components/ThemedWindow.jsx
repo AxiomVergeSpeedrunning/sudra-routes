@@ -50,25 +50,21 @@ const useStyles = makeStyles(theme => ({
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
-
     '&$gdq2': {
       borderImage: `url(${GDQSubBorder2}) 2 round`,
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
-
     '&$gdq3': {
       borderImage: `url(${GDQSubBorder3}) 2 round`,
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
-
     '&$avsr': {
       borderImage: `url(${AVSRSubBorder}) 2 round`,
       border: '2px solid transparent',
       backgroundColor: '#110209',
     },
-    
     '&$noreset': {
       borderImage: `none 2 round`,
       border: '2px solid transparent',
@@ -78,7 +74,6 @@ const useStyles = makeStyles(theme => ({
     '&$purple': {
       borderImageSource: `url(${PurpleBorder})`,
       backgroundColor: '#000000',
-
       '&$gdq': {
         borderImage: `url(${GDQBorder}) 9 round`,
         border: '9px solid transparent',
@@ -98,6 +93,7 @@ const useStyles = makeStyles(theme => ({
       '&$noreset': {
         borderImage: `url(${AVSRBorder}) 9 round`,
         border: '9px solid transparent',
+        backgroundColor: 'transparent',
       },
     },
 
