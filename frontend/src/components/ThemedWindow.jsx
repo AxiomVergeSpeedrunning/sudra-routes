@@ -63,7 +63,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#110209',
     },
     '&$noreset': {
-      borderImage: `none 2 round`,
+      borderImage: `url(${GDQSubBorder3}) 2 round`,
       border: '2px solid transparent',
       backgroundColor: 'transparent',
     },
@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
         border: '9px solid transparent',
       },
       '&$noreset': {
-        borderImage: `url(${GDQBorder3}) 9 round`,
+        borderImage: `none 9 round`,
         border: '9px solid transparent',
         backgroundColor: 'transparent',
       },
