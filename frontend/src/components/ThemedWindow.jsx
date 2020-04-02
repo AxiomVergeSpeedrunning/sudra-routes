@@ -147,7 +147,7 @@ const ThemedWindow = ({ children, variant, slim, className: externClassName }) =
       [classes.gdq2]: search.has('gdq2'),
       [classes.gdq3]: search.has('gdq3'),
       [classes.avsr]: search.has('avsr'),
-      [classes.avsr]: search.has('noreset'),
+      [classes.noreset]: search.has('noreset'),
     },
     externClassName,
   );
