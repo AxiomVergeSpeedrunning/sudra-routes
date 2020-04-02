@@ -23,9 +23,6 @@ import GDQSubBorder3 from '../assets/gdq-frame3.png';
 import AVSRBorder from '../assets/gamer-tags-border-2.png';
 import AVSRSubBorder from '../assets/avsr-frame.png';
 
-import NoResetBorder from '../assets/gamer-tags-border-2.png';
-import NoResetSubBorder from '../assets/avsr-frame.png';
-
 const useStyles = makeStyles(theme => ({
   // Used to modify other classes
   purple: {},
@@ -91,7 +88,7 @@ const useStyles = makeStyles(theme => ({
         border: '9px solid transparent',
       },
       '&$noreset': {
-        borderImage: `url(${AVSRBorder}) 9 round`,
+        borderImage: `url(${GDQBorder3}) 9 round`,
         border: '9px solid transparent',
         backgroundColor: 'transparent',
       },
@@ -113,7 +110,7 @@ const useStyles = makeStyles(theme => ({
         borderImage: `url(${AVSRSubBorder}) 2 round`,
       },
       '&$noreset': {
-        borderImage: `url(${AVSRSubBorder}) 2 round`,
+        borderImage: `url(${GDQSubBorder3}) 2 round`,
       },
     },
 
