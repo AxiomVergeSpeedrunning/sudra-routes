@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
   gdq2: {},
   gdq3: {},
   avsr: {},
+  noreset: {},
 
   root: {
     padding: theme.spacing(3),
@@ -46,29 +47,30 @@ const useStyles = makeStyles(theme => ({
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
-
     '&$gdq2': {
       borderImage: `url(${GDQSubBorder2}) 2 round`,
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
-
     '&$gdq3': {
       borderImage: `url(${GDQSubBorder3}) 2 round`,
       border: '2px solid transparent',
       backgroundColor: '#021111',
     },
-
     '&$avsr': {
       borderImage: `url(${AVSRSubBorder}) 2 round`,
       border: '2px solid transparent',
       backgroundColor: '#110209',
     },
+    '&$noreset': {
+      borderImage: `url(${GDQSubBorder3}) 2 round`,
+      border: '2px solid transparent',
+      backgroundColor: 'transparent',
+    },
 
     '&$purple': {
       borderImageSource: `url(${PurpleBorder})`,
       backgroundColor: '#000000',
-
       '&$gdq': {
         borderImage: `url(${GDQBorder}) 9 round`,
         border: '9px solid transparent',
@@ -84,6 +86,11 @@ const useStyles = makeStyles(theme => ({
       '&$avsr': {
         borderImage: `url(${AVSRBorder}) 9 round`,
         border: '9px solid transparent',
+      },
+      '&$noreset': {
+        borderImage: `none`,
+        border: '9px solid transparent',
+        backgroundColor: 'transparent',
       },
     },
 
@@ -101,6 +108,9 @@ const useStyles = makeStyles(theme => ({
       },
       '&$avsr': {
         borderImage: `url(${AVSRSubBorder}) 2 round`,
+      },
+      '&$noreset': {
+        borderImage: `url(${GDQSubBorder3}) 2 round`,
       },
     },
 
@@ -130,6 +140,7 @@ const ThemedWindow = ({ children, variant, slim, className: externClassName }) =
       [classes.gdq2]: search.has('gdq2'),
       [classes.gdq3]: search.has('gdq3'),
       [classes.avsr]: search.has('avsr'),
+      [classes.noreset]: search.has('noreset'),
     },
     externClassName,
   );
