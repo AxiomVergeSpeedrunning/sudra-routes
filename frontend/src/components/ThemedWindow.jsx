@@ -23,6 +23,9 @@ import GDQSubBorder3 from '../assets/gdq-frame3.png';
 import AVSRBorder from '../assets/gamer-tags-border-2.png';
 import AVSRSubBorder from '../assets/avsr-frame.png';
 
+import NoResetBorder from '../assets/gamer-tags-border-2.png';
+import NoResetSubBorder from '../assets/avsr-frame.png';
+
 const useStyles = makeStyles(theme => ({
   // Used to modify other classes
   purple: {},
@@ -33,6 +36,7 @@ const useStyles = makeStyles(theme => ({
   gdq2: {},
   gdq3: {},
   avsr: {},
+  noreset: {},
 
   root: {
     padding: theme.spacing(3),
@@ -64,6 +68,12 @@ const useStyles = makeStyles(theme => ({
       border: '2px solid transparent',
       backgroundColor: '#110209',
     },
+    
+    '&$noreset': {
+      borderImage: `none 2 round`,
+      border: '2px solid transparent',
+      backgroundColor: 'transparent',
+    },
 
     '&$purple': {
       borderImageSource: `url(${PurpleBorder})`,
@@ -85,6 +95,10 @@ const useStyles = makeStyles(theme => ({
         borderImage: `url(${AVSRBorder}) 9 round`,
         border: '9px solid transparent',
       },
+      '&$noreset': {
+        borderImage: `url(${AVSRBorder}) 9 round`,
+        border: '9px solid transparent',
+      },
     },
 
     '&$deepRed': {
@@ -100,6 +114,9 @@ const useStyles = makeStyles(theme => ({
         borderImage: `url(${GDQSubBorder3}) 2 round`,
       },
       '&$avsr': {
+        borderImage: `url(${AVSRSubBorder}) 2 round`,
+      },
+      '&$noreset': {
         borderImage: `url(${AVSRSubBorder}) 2 round`,
       },
     },
@@ -130,6 +147,7 @@ const ThemedWindow = ({ children, variant, slim, className: externClassName }) =
       [classes.gdq2]: search.has('gdq2'),
       [classes.gdq3]: search.has('gdq3'),
       [classes.avsr]: search.has('avsr'),
+      [classes.avsr]: search.has('noreset'),
     },
     externClassName,
   );
