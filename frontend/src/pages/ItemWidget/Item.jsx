@@ -16,10 +16,9 @@ const useStyles = makeStyles(() => ({
     height: 48,
   },
   img: {
-    filter: 'grayscale(100%)',
+    filter: 'brightness(50%)',
     height: '100%',
     width: '100%',
-
     '&$complete': {
       filter: 'none',
     },
