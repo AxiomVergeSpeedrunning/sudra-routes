@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     '&$thunderthon': {
       borderImage: `url(${TTSubBorder}) 2 round`,
       border: '2px solid transparent',
-      backgroundColor: 'transparent',
+      backgroundColor: '#021E6A',
     },
 
     '&$purple': {
@@ -104,6 +104,7 @@ const useStyles = makeStyles(theme => ({
       '&$thunderthon': {
         borderImage: `url(${TTBorder}) 9 round`,
         border: '9px solid transparent',
+        backgroundColor: '#021E6A',
       },
     },
 
