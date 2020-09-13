@@ -23,6 +23,9 @@ import GDQSubBorder3 from '../assets/gdq-frame3.png';
 import AVSRBorder from '../assets/gamer-tags-border-2.png';
 import AVSRSubBorder from '../assets/avsr-frame.png';
 
+import TTBorder from '../assets/thunderthon-outside-border.png';
+import TTSubBorder from '../assets/thunderthon-inside-border.png';
+
 const useStyles = makeStyles(theme => ({
   // Used to modify other classes
   purple: {},
@@ -34,6 +37,7 @@ const useStyles = makeStyles(theme => ({
   gdq3: {},
   avsr: {},
   noreset: {},
+  thunderthon: {},
 
   root: {
     padding: theme.spacing(3),
@@ -67,6 +71,11 @@ const useStyles = makeStyles(theme => ({
       border: '2px solid transparent',
       backgroundColor: 'transparent',
     },
+    '&$thunderthon': {
+      borderImage: `url(${TTSubBorder}) 2 round`,
+      border: '2px solid transparent',
+      backgroundColor: 'transparent',
+    },
 
     '&$purple': {
       borderImageSource: `url(${PurpleBorder})`,
@@ -92,6 +101,10 @@ const useStyles = makeStyles(theme => ({
         border: '9px solid transparent',
         backgroundColor: 'transparent',
       },
+      '&$thunderthon': {
+        borderImage: `url(${TTBorder}) 9 round`,
+        border: '9px solid transparent',
+      },
     },
 
     '&$deepRed': {
@@ -111,6 +124,9 @@ const useStyles = makeStyles(theme => ({
       },
       '&$noreset': {
         borderImage: `url(${GDQSubBorder3}) 2 round`,
+      },
+      '&$thunderthon': {
+        borderImage: `url(${TTSubBorder}) 2 round`,
       },
     },
 
@@ -141,6 +157,7 @@ const ThemedWindow = ({ children, variant, slim, className: externClassName }) =
       [classes.gdq3]: search.has('gdq3'),
       [classes.avsr]: search.has('avsr'),
       [classes.noreset]: search.has('noreset'),
+      [classes.thunderthon]: search.has('thunderthon'),
     },
     externClassName,
   );
