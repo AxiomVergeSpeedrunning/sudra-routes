@@ -24,7 +24,7 @@ import AVSRBorder from '../assets/gamer-tags-border-2.png';
 import AVSRSubBorder from '../assets/avsr-frame.png';
 
 import TTBorder from '../assets/thunderthon-outside-border.png';
-import TTSubBorder from '../assets/thunderthon-inside-border.png';
+import TTSubBorder from '../assets/thunderthon-inside-border-alt.png';
 
 const useStyles = makeStyles(theme => ({
   // Used to modify other classes
